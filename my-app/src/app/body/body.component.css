@@ -1,0 +1,17 @@
+#shop_now_button{
+    position:relative;
+    height: calc( 100vh - 8rem );
+   
+    }
+    
+
+
+    #ShopNowButton{
+        position: absolute;
+        bottom: 50%;
+        margin: auto;
+        right: 25%;
+        height: 75px;
+        width: 200px;
+        font-size: 175%;
+    }
