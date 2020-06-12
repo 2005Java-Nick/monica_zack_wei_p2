@@ -4,6 +4,7 @@ import { Observable, observable} from 'rxjs';
 import { UserData } from '../types/UserData';
 import { Token } from '../types/Token';
 import { environment } from '../../../../environments/environment';
+import { UserAccount } from '../types/UserAccount';
 
 @Injectable({
   providedIn: 'root'
@@ -21,8 +22,8 @@ export class LoginService{
     sessionStorage.clear();
   }
 
-  authenticate(data: UserData): Observable<Token> {
-    return this.http.post<Token>(environment.loginURL, data);
+  authenticate(data: UserData): Observable<UserAccount> {
+    return this.http.post<UserAccount>(environment.loginURL, data);
   }
 
 
@@ -31,8 +32,9 @@ export class LoginService{
     const ob = new Observable<boolean>(
       (obser) => {
         this.authenticate(data).subscribe(
-          (userToken: Token) => {
-            sessionStorage.setItem('Token', userToken.token);
+          (userToken: UserAccount) => {
+            console.log(userToken.accountType.type);
+            sessionStorage.setItem('Token', userToken.sessionToken);
             console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
             if (userToken != null) { this.isLogin = true; obser.next(true); }

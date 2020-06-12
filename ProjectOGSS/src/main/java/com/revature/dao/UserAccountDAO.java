@@ -1,16 +1,16 @@
 package com.revature.dao;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.revature.model.UserAccount;
+import com.revature.struct.UserData;
 
-@Component
+@Repository
 public class UserAccountDAO {
 
 	private SessionFactory sf;
@@ -20,19 +20,24 @@ public class UserAccountDAO {
 		this.sf = sessionFactory;
 	}
 
-	public List<UserAccount> getAllUserAccounts() {
+	public UserAccount getUserAccount(UserData data) {
 
-		Session sess = sf.openSession();
-		String hql = "FROM user_account name";
-		Query query = sess.createQuery(hql);
-		List<UserAccount> listresults = query.list();
-
-		System.out.println("DAO RAN");
-		for (UserAccount acc : listresults) {
-			System.out.println(acc.getAddress());
-		}
-		sess.close();
+		Session session = sf.openSession();
+		String hql = "FROM user_account UA WHERE UA.username = :username AND UA.password = :password";
+		Query query = session.createQuery(hql);
+		query.setParameter("username", data.getUsername());
+		query.setParameter("password", data.getPassword());
+		UserAccount listresults = (UserAccount) query.uniqueResult();
+		session.close();
 		return listresults;
+	}
+
+	public void setUserAccountSessionToken(UserAccount userAccount) {
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		session.merge(userAccount);
+		tx.commit();
+		session.close();
 	}
 
 }

@@ -13,7 +13,7 @@
   <filter>
     <display-name>HeaderFilter</display-name>
     <filter-name>HeaderFilter</filter-name>
-    <filter-class>com.revature.controller.HeaderFilter</filter-class>
+    <filter-class>com.revature.filters.HeaderFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>HeaderFilter</filter-name>
