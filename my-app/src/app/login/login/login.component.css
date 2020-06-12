@@ -1,0 +1,13 @@
+#login-form{
+    padding: 20px;
+    border-radius: 25px;
+    background-color: rgb(3, 3, 3);
+}
+.my-row1{
+    
+    height: calc( 100% - 8rem );
+}
+
+#words{
+    color: white;
+}

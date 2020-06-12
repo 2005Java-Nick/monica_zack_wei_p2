@@ -135,7 +135,13 @@ REFERENCES discount_code(id) ON DELETE CASCADE;
 	
 	
 	
-	
-	
+insert into user_account (username, user_password, phone_number, email, address, state, city, zip, firstname, lastname)
+values ('Wei', 'WeisPassword', '999-999-9999', 'email@email.com', '123 Address Ave', 'NY', 'NYC', '12345', 'Wei', 'Wu' );	
+
+insert into account_type (id, acc_type)
+values (1, 'customer');	
+
+insert into user_type (user_account_id, account_type_id)
+values (1, 1);	
 	
 	

@@ -4,8 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './header/header.module';
 import { BodyModule } from './body/body.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [
@@ -15,8 +17,10 @@ import { BodyModule } from './body/body.module';
     BrowserModule,
     AppRoutingModule,
     NgbModule,
+    HttpClientModule,
     HeaderModule,
-    BodyModule
+    BodyModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
