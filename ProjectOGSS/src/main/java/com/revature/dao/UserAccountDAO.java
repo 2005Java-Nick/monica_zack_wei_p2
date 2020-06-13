@@ -40,4 +40,15 @@ public class UserAccountDAO {
 		session.close();
 	}
 
+	public UserAccount createUserAccount(UserAccount userAccount) {
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		session.persist(userAccount);
+		session.flush();
+		tx.commit();
+		session.close();
+		return userAccount;
+
+	}
+
 }
