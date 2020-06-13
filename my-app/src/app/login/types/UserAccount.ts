@@ -1,6 +1,6 @@
 import { AccountType } from './AccountType';
 
-export interface UserAccount {
+export class UserAccount {
 id: number;
 username: string;
 password: string;

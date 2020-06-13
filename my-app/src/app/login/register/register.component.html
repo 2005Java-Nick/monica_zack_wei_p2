@@ -1,0 +1,148 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container register">
+    <div class="row">
+        <div class="col-md-3 register-left">
+            <div *ngIf="user.accountType.type==='customer'; else driverBlock">
+                <img src="assets\images\grocery.png" />
+                <p>Register your account so you can start shopping!</p>
+            </div>
+            <ng-template #driverBlock>
+                <img src="assets\images\truck.png" />
+                <p>Apply to drive for us!</p>
+            </ng-template>
+            <br />
+        </div>
+        <div class="col-md-9 register-right">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                        aria-controls="home" aria-selected="true" (click)="makeTypeCustomer()">Customer</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                        aria-controls="profile" aria-selected="false" (click)="makeTypeDriver()">Driver</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <h3 class="register-heading">Customer Sign Up</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input [(ngModel)]="user.firstname" type="text" class="form-control"
+                                    placeholder="First Name *" name="firstname" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.lastname" type="text" class="form-control"
+                                    placeholder="Last Name *" name="lastname" />
+                            </div>
+
+                            <div class="form-group">
+
+                                <input [(ngModel)]="user.address" type="address" class="form-control"
+                                    placeholder="Street Address *" name="address" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.city" type="text" class="form-control" placeholder="City *"
+                                    name="city" />
+                            </div>
+                            <div class="form-group">
+
+                                <input [(ngModel)]="user.state" type="address" class="form-control"
+                                    placeholder="State *" name="state" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.zip" type="text" class="form-control" placeholder="Zip *"
+                                    name="zip" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input [(ngModel)]="user.email" type="email" class="form-control"
+                                    placeholder="Your Email *" name="email" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.phoneNumber" type="text" minlength="10" maxlength="10"
+                                    name="txtEmpPhone" class="form-control" placeholder="Your Phone *"
+                                    name="phoneNumber" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.username" type="text" class="form-control"
+                                    placeholder="Username *" name="usernameInput" id="usernameInput" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.password" type="password" class="form-control"
+                                    placeholder="Password *" name="user_password" id="password" />
+                            </div>
+
+                            <input (click)="onSignUp()" type="submit" class="btnRegister" value="Register" />
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <h3 class="register-heading">Apply as a Delivery Driver</h3>
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input [(ngModel)]="user.firstname" type="text" class="form-control"
+                                    placeholder="First Name *" name="firstname" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.lastname" type="text" class="form-control"
+                                    placeholder="Last Name *" name="lastname" />
+                            </div>
+
+                            <div class="form-group">
+
+                                <input [(ngModel)]="user.address" type="address" class="form-control"
+                                    placeholder="Street Address *" name="address" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.city" type="text" class="form-control" placeholder="City *"
+                                    name="city" />
+                            </div>
+                            <div class="form-group">
+
+                                <input [(ngModel)]="user.state" type="address" class="form-control"
+                                    placeholder="State *" name="state" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.zip" type="text" class="form-control" placeholder="Zip *"
+                                    name="zip" />
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input [(ngModel)]="user.email" type="email" class="form-control"
+                                    placeholder="Your Email *" name="email" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.phoneNumber" type="text" minlength="10" maxlength="10"
+                                    name="txtEmpPhone" class="form-control" placeholder="Your Phone *"
+                                    name="phoneNumber" />
+
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.username" type="text" class="form-control"
+                                    placeholder="Username *" name="usernameInput" id="usernameInput" />
+                            </div>
+                            <div class="form-group">
+                                <input [(ngModel)]="user.password" type="password" class="form-control"
+                                    placeholder="Password *" name="user_password" id="password" />
+                            </div>
+
+                            <input (click)="onSignUp()" type="submit" class="btnRegister" value="Register" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

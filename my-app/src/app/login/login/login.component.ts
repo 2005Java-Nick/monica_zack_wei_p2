@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { LoginService } from 'src/app/login/login/services/login.service';
-import { UserData } from './types/UserData';
 import { first } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { UserData } from '../types/UserData';
+import { LoginService } from '../services/login.service';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
