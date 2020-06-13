@@ -8,10 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderModule } from './header/header.module';
 import { BodyModule } from './body/body.module';
 import { LoginModule } from './login/login.module';
+import { BrowserComponent } from './browser/browser.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BrowserComponent
   ],
   imports: [
     BrowserModule,
