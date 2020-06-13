@@ -22,7 +22,7 @@ public class SessionFactoryUtil {
 
 	private static String password;
 
-	private static final String DB_NAME = "revature_weiwu_db";
+	private static final String DB_NAME = "postgres";
 
 	public SessionFactory getSessionFactory() {
 		return this.sf;
@@ -35,10 +35,10 @@ public class SessionFactoryUtil {
 	public SessionFactoryUtil() {
 		System.out.println("test0");
 		if (sf == null) {
-			url = System.getenv("POSTGRES_URL");
+			url = System.getenv("url");
 			url = "jdbc:postgresql://" + url + ":5432/" + DB_NAME + "?";
-			username = System.getenv("POSTGRES_USERNAME");
-			password = System.getenv("POSTGRES_PASSWORD");
+			username = System.getenv("username");
+			password = System.getenv("password");
 			Map<String, String> settings = new HashMap<String, String>();
 			settings.put("hibernate.connection.driver_class", "org.postgresql.Driver");
 			settings.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
