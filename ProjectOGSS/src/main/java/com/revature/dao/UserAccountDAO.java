@@ -27,11 +27,13 @@ public class UserAccountDAO {
 	public UserAccount getUserAccount(UserData data) {
 
 		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
 		String hql = "FROM user_account UA WHERE UA.username = :username AND UA.password = :password";
 		Query query = session.createQuery(hql);
 		query.setParameter("username", data.getUsername());
 		query.setParameter("password", data.getPassword());
 		UserAccount listresults = (UserAccount) query.uniqueResult();
+		session.flush();
 		session.close();
 		return listresults;
 	}
