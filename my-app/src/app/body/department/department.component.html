@@ -1,0 +1,20 @@
+<div class="container product-display">
+    <div class="row product-heading">
+        <h1 id="product-header">Fresh Produce of the Day</h1>
+    </div>
+        <div class="row">
+        <div *ngFor="let product of products" class="column">
+            <div class="card">
+                <div class="image-container">
+                    <img [src]="product.pictureData" alt="Cauliflower" style="width:100%">
+                </div>
+                <h2>{{product.productName}}</h2>
+                <p class="price">${{product.price}} ea</p>
+                <p>{{product.description}}</p>
+                <p><button>Add to Cart</button></p>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
