@@ -1,3 +1,14 @@
+drop table user_account cascade;
+drop table user_type cascade;
+drop table account_type cascade;
+drop table delivery_driver_status cascade;
+drop table orders_invoice cascade;
+drop table order_queue cascade;
+drop table item_list cascade;
+drop table products cascade;
+drop table coupon_specialized cascade;
+drop table discount_code cascade;
+
 CREATE TABLE user_account
 (
 	id serial PRIMARY KEY,
@@ -73,8 +84,11 @@ CREATE TABLE products
 	description TEXT,
 	price NUMERIC,
 	inventory_quantity int,
-	picture_data bytea
+	image_name text,
+	image_url text,
+	tags text
 );
+
 
 CREATE TABLE coupon_specialized
 (
@@ -136,12 +150,21 @@ REFERENCES discount_code(id) ON DELETE CASCADE;
 	
 	
 insert into user_account (username, user_password, phone_number, email, address, state, city, zip, firstname, lastname)
-values ('Wei', 'WeisPassword', '999-999-9999', 'email@email.com', '123 Address Ave', 'NY', 'NYC', '12345', 'Wei', 'Wu' );	
+values ('Wei', 'Pass', '999-999-9999', 'email@email.com', '123 Address Ave', 'NY', 'NYC', '12345', 'Wei', 'Wu' );	
 
 insert into account_type (id, acc_type)
 values (1, 'customer');	
 
+insert into account_type (id, acc_type)
+values (2, 'driver');	
+
+insert into account_type (id, acc_type)
+values (3, 'admin');	
+
 insert into user_type (user_account_id, account_type_id)
 values (1, 1);	
 	
-	
+insert into products (product_name , description , price , inventory_quantity )
+values ('Apply', 'a apply...', 5, 2);
+insert into products (product_name , description , price , inventory_quantity )
+values ('Cake', 'a big cake...', 76, 7);

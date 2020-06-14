@@ -1,18 +1,16 @@
 package com.revature.model;
 
-import java.util.Collection;
+import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-@Entity(name = "account_type")
+@Entity
+@Table(name = "account_type")
 public class AccountType {
 
 	@Id
@@ -22,10 +20,27 @@ public class AccountType {
 	@Column(name = "acc_type")
 	private String type;
 
+	public AccountType() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	@OneToMany(mappedBy = "accountType")
-	@Fetch(FetchMode.JOIN)
-	@JsonIgnore
-	private Collection<UserAccount> user_accounts;
+	private List<UserAccount> userAccount;
+
+	public AccountType(int id, String type) {
+		super();
+		this.id = id;
+		this.type = type;
+
+	}
+
+	public AccountType(int id, String type, List<UserAccount> userAccount) {
+		super();
+		this.id = id;
+		this.type = type;
+		this.userAccount = userAccount;
+	}
 
 	public int getId() {
 		return id;
@@ -41,5 +56,29 @@ public class AccountType {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null || getClass() != obj.getClass())
+			return false;
+
+		AccountType temp = (AccountType) obj;
+		return Objects.equals(id, temp.id);
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	public List<UserAccount> getUserAccount() {
+		return userAccount;
+	}
+
+	public void setUserAccount(List<UserAccount> userAccount) {
+		this.userAccount = userAccount;
 	}
 }

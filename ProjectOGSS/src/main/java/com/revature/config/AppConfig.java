@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import com.revature.util.SessionFactoryUtil;
 
@@ -28,4 +29,10 @@ public class AppConfig {
 		return sessionFactoryUtil.getSessionFactory();
 	}
 
+	@Bean(name = "multipartResolver")
+	public CommonsMultipartResolver filterMultipartResolver() {
+		CommonsMultipartResolver resolver = new CommonsMultipartResolver();
+		resolver.setMaxUploadSize(20848820);
+		return resolver;
+	}
 }

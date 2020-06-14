@@ -51,7 +51,11 @@ public class SessionFactoryUtil {
 					.build();
 			Metadata metadata = new MetadataSources(standardRegistry)
 					.addAnnotatedClass(com.revature.model.AccountType.class)
-					.addAnnotatedClass(com.revature.model.UserAccount.class).getMetadataBuilder()
+					.addAnnotatedClass(com.revature.model.UserAccount.class)
+					.addAnnotatedClass(com.revature.model.Invoice.class)
+					.addAnnotatedClass(com.revature.model.ItemList.class)
+					.addAnnotatedClass(com.revature.model.ItemListID.class)
+					.addAnnotatedClass(com.revature.model.Product.class).getMetadataBuilder()
 					.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE).build();
 			sf = metadata.getSessionFactoryBuilder().build();
 		}

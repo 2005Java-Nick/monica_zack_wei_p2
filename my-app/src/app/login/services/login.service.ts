@@ -1,6 +1,6 @@
 import { Injectable, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, observable} from 'rxjs';
+import { Observable, observable, Subject} from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { UserData } from '../types/UserData';
 import { UserAccount } from '../types/UserAccount';
@@ -13,9 +13,15 @@ export class LoginService{
 
   isLogin: boolean;
 
+  loginStatusChanged: Subject<boolean> = new Subject<boolean>();
+
   constructor(private http: HttpClient) {
     this.resetLogin();
-  }
+    this.loginStatusChanged.subscribe((value) => {
+      this.isLogin = value;
+  });
+}
+
 
   resetLogin(){
     this.isLogin = false;
@@ -37,7 +43,7 @@ export class LoginService{
             sessionStorage.setItem('Token', userToken.sessionToken);
             console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
-            if (userToken != null) { this.isLogin = true; obser.next(true); }
+            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); }
           }
         );
       }
@@ -59,7 +65,7 @@ export class LoginService{
             sessionStorage.setItem('Token', userToken.sessionToken);
             console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
-            if (userToken != null) { this.isLogin = true; obser.next(true); }
+            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); }
           }
         );
       }

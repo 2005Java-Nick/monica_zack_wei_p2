@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/login/services/login.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +10,14 @@ import { Router } from '@angular/router';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private route: Router) { }
+  isLogin: boolean;
+  isLoginSubscription: Subscription;
+  constructor(private route: Router, private loginService: LoginService) {
+    this.isLogin = loginService.isLogin;
+    this.isLoginSubscription = loginService.loginStatusChanged.subscribe((value) => {
+      this.isLogin = value;
+    });
+  }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,7 @@
 package com.revature.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -7,7 +9,9 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.revature.model.AccountType;
 import com.revature.model.UserAccount;
+import com.revature.struct.Token;
 import com.revature.struct.UserData;
 
 @Repository
@@ -32,6 +36,17 @@ public class UserAccountDAO {
 		return listresults;
 	}
 
+	public UserAccount getUserAccount(Token token) {
+
+		Session session = sf.openSession();
+		String hql = "FROM user_account UA WHERE UA.sessionToken = :sessionToken";
+		Query query = session.createQuery(hql);
+		query.setParameter("sessionToken", token.getToken());
+		UserAccount listresults = (UserAccount) query.uniqueResult();
+		session.close();
+		return listresults;
+	}
+
 	public void setUserAccountSessionToken(UserAccount userAccount) {
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
@@ -49,6 +64,16 @@ public class UserAccountDAO {
 		session.close();
 		return userAccount;
 
+	}
+
+	public List<AccountType> getAccountPermissions(Token token) {
+		Session session = sf.openSession();
+		String hql = "FROM AccountType a INNER JOIN a.userAccount ua where ua.sessionToken = :sessionToken";
+		Query query = session.createQuery(hql);
+		query.setParameter("sessionToken", token.getToken());
+		List<AccountType> listresults = (List<AccountType>) query.list();
+		session.close();
+		return listresults;
 	}
 
 }
