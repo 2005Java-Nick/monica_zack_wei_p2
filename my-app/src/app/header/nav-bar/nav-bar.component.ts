@@ -14,8 +14,12 @@ import { ProductService } from 'src/app/body/service/product.service';
 })
 export class NavBarComponent implements OnInit {
 
+  loginService: LoginService;
+
   isLogin: boolean;
   isLoginSubscription: Subscription;
+
+  isAdmin: false;
 
   products: Array<Product>;
   departments: Array<Department>;
@@ -29,7 +33,9 @@ export class NavBarComponent implements OnInit {
   selectAddCartSubscription: Subscription;
   cartSubscripton: Subscription;
 
-  constructor(private route: Router, loginService: LoginService, public departmentService: DepartmentService, public productService: ProductService) {
+  constructor(private route: Router, loginService: LoginService, public departmentService: DepartmentService,
+              public productService: ProductService) {
+    this.loginService = loginService;
     this.isLogin = loginService.isLogin;
     this.productService.getProducts();
     this.isLoginSubscription = loginService.loginStatusChanged.subscribe((value) => {
@@ -65,10 +71,10 @@ export class NavBarComponent implements OnInit {
   onLoginClick() {
     this.route.navigateByUrl('/login');
   }
-  onRegisterClick(){
+  onRegisterClick() {
     this.route.navigateByUrl('/register');
   }
-  onAdminClick(){
+  onAdminClick() {
     this.route.navigateByUrl('/admin');
   }
 }

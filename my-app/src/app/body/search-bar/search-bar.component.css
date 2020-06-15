@@ -1,8 +1,12 @@
-#Search{
-    width: 35vw;
+#Search {
+    width: 20vw;
     margin-right: 5px;
 }
 
-.btn{
+.btn {
     background-color: white;
+}
+
+.btn:hover {
+    background-color: darkslategrey;
 }

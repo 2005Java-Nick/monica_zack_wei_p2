@@ -53,9 +53,12 @@ export class DepartmentService {
     this.route.navigateByUrl('/department');
     this.selectedDepartmentUpdated.next(department);
   }
-  onAddCartClick(product){
+  onAddCartClick(product, value){
     this.selectAddCartUpdated.next(product);
-    this.cart.push(product);
+    for (let i = 0; i < value; i++) {
+      this.cart.push(product);
+    }
+    this.selectedProduct.inventoryQuantity -= value;
   }
   showCart(){
     console.log(this.cart);

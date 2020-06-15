@@ -1,8 +1,13 @@
+.background-img {
+    background-image: url(../../../assets/images/retina_wood.png);
+    background-repeat: repeat;
+    padding: 2rem;
+}
+
 .product-display {
     background: -webkit-linear-gradient(left, #c3e7a5b6, #82c785b6);
-    margin-top: 3%;
     padding: 3%;
-    border-radius: 2%;
+    border-radius: 5%;
 }
 
 .product-heading {
@@ -17,25 +22,38 @@
 
 #product-header {
     font-size: 3vw;
+    text-align: center;
 }
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    max-width: 300px;
-    width: 200px;
-    margin: 1vmax;
+    width: 250px;
+    margin: 1.5vmax;
     text-align: center;
     font-family: arial;
     border-radius: 6%;
+    opacity: 0.9;
+}
+
+.card:hover {
+    opacity: 1.0;
 }
 
 .image-container {
     border-radius: 6%;
     float: left;
-    width: 100%;
+    width: 90%;
     height: 150px;
     object-fit: cover;
     overflow: hidden;
+    border: 2px solid rgb(61, 168, 61);
+    margin-top: 5%;
+    align-self: center;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
 }
   
 .price {
@@ -62,7 +80,30 @@
 .row {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+}
+
+#description {
+    height: 4rem;
+    padding: 1rem;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+.sold-out {
+    opacity: 0.55;
+}
+
+.sold-out:hover {
+    opacity: 0.65;
+}
+
+#quantity-counter {
+    align-self: center;
+    width: 50px;
+    margin: 1rem;
 }
