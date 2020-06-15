@@ -1,0 +1,19 @@
+<div class="container product-display">
+    <div class="row product-heading animate__animated animate__zoomIn">
+        <h1 id="product-header">{{selectedDepartment.name}}</h1>
+    </div>
+        <div class="row">
+        <div *ngFor="let product of products" class="column">
+            <div *ngIf="product.tags===selectedDepartment.name" class="card">
+                <div class="image-container">
+                    <img [src]="product.imageUrl" [alt]="product.productName" style="width:100%">
+                </div>
+                <h2>{{product.productName}}</h2>
+                <p class="price">${{product.price}} ea</p>
+                <p>{{product.description}}</p>
+                <p><button (click)="departmentService.onAddCartClick(product)">Add To Cart</button></p>
+            </div>
+        </div>
+        
+    </div>
+</div>
