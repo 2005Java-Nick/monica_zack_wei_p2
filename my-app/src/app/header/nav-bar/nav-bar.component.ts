@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Product } from '../../body/types/product';
 import { DepartmentService } from '../../body/department/services/department.service';
 import { Department } from '../../body/types/department';
+import { ProductService } from 'src/app/body/service/product.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -28,12 +29,13 @@ export class NavBarComponent implements OnInit {
   selectAddCartSubscription: Subscription;
   cartSubscripton: Subscription;
 
-  constructor(private route: Router, private loginService: LoginService, public departmentService: DepartmentService) {
+  constructor(private route: Router, loginService: LoginService, public departmentService: DepartmentService, public productService: ProductService) {
     this.isLogin = loginService.isLogin;
+    this.productService.getProducts();
     this.isLoginSubscription = loginService.loginStatusChanged.subscribe((value) => {
       this.isLogin = value;
     });
-    this.products = departmentService.products;
+    this.products = productService.products;
     this.departments = departmentService.departments;
     this.selectedDepartment = departmentService.selectedDepartment;
     this.productSubscription = departmentService.productListUpdated.subscribe((value) => {
@@ -66,5 +68,7 @@ export class NavBarComponent implements OnInit {
   onRegisterClick(){
     this.route.navigateByUrl('/register');
   }
-
+  onAdminClick(){
+    this.route.navigateByUrl('/admin');
+  }
 }

@@ -9,16 +9,7 @@ import { Router } from '@angular/router';
 })
 export class DepartmentService {
 
-  products: Array<Product> = [
-    new Product(1, 'Cauliflower', 'Fresh and Organic', 3.48, 87, 'Cauliflower', 'assets/images/cauliflower.png', 'Fresh Produce'),
-    new Product(2, 'Tomato', 'Tasty', 1.48, 72, 'Tomatoes', 'assets/images/tomatoes.jpg', 'Bakery'),
-    new Product(3, 'Cucumbers', 'Fresh and Green', 1.78, 50, 'Cucumbers', 'assets/images/cucumbers.jpg', 'Fresh Produce'),
-    new Product(4, 'Asparagus', 'Fresh and Organic', 5.48, 15, 'Asparagus', 'assets/images/asparagus.jpg', 'Fresh Produce'),
-    new Product(5, 'Onion', 'Fresh and Organic', 1.25, 64, 'Onion', 'assets/images/onion.jpg', 'Fresh Produce'),
-    new Product(6, 'Potatoes', 'Idaho potatoes', 2.59, 47, 'Potatoes', 'assets/images/potatoes.jpg', 'Fresh Produce'),
-    new Product(7, 'Garlic', 'Keeps vampires away', 0.50, 80, 'Garlic', 'assets/images/garlic.jpg', 'Fresh Produce'),
-    new Product(8, 'Ginger', 'Juicy', 2.09, 36, 'Ginger', 'assets/images/ginger.jpg', 'Fresh Produce')
-  ];
+  products: Array<Product>;
 
   departments: Array<Department> = [
     new Department(1, 'Fresh Produce'),

@@ -3,6 +3,7 @@ import { DepartmentService } from './services/department.service';
 import { Subscription, Subject } from 'rxjs';
 import { Product } from '../types/product';
 import { Department } from '../types/department';
+import { ProductService } from '../service/product.service';
 
 
 
@@ -25,11 +26,11 @@ export class DepartmentComponent implements OnInit {
   selectAddCartSubscription: Subscription;
   cartSubscripton: Subscription;
 
-  constructor(public departmentService: DepartmentService) {
-    this.products = departmentService.products;
+  constructor(public departmentService: DepartmentService, public productService: ProductService) {
+    this.products = productService.products;
     this.department = departmentService.departments;
     this.selectedDepartment = departmentService.selectedDepartment;
-    this.productSubscription = departmentService.productListUpdated.subscribe((value) => {
+    this.productSubscription = productService.productListUpdated.subscribe((value) => {
       this.products = value;
     });
     this.departmentSubscription = departmentService.departmentListUpdated.subscribe((value) => {

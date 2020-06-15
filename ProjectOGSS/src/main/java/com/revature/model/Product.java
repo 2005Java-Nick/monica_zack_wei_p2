@@ -1,6 +1,5 @@
 package com.revature.model;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -26,7 +25,7 @@ public class Product {
 	private String discription;
 
 	@Column(name = "price")
-	private BigDecimal price;
+	private double price;
 
 	@Column(name = "inventory_quantity")
 	private int inventoryQuantity;
@@ -45,7 +44,7 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Product(int id, String productName, String discription, BigDecimal price, int inventoryQuantity,
+	public Product(int id, String productName, String discription, double price, int inventoryQuantity,
 			String imageName, String imageUrl, String tags) {
 		super();
 		this.id = id;
@@ -82,11 +81,11 @@ public class Product {
 		this.discription = discription;
 	}
 
-	public BigDecimal getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(BigDecimal price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 

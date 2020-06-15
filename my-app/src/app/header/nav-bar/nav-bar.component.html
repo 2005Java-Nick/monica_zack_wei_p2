@@ -1,4 +1,5 @@
 <nav class="navbar justify-content-between">
+    <div>
     <a class="navbar-brand" (click)="onHomeClick()">
         <img src="assets\images\grocery_logo.jpg" width="65" height="64" id="img">
         <b> Online Grocery Store </b>
@@ -13,6 +14,11 @@
             <a *ngFor="let department of departments" class="dropdown-item" (click)="departmentService.onDepartmentClick(department)">{{department.name}}</a>
         </div>
     </div>
+    <a class="navbar-brand" (click)="onAdminClick()">
+        <img src="assets\images\signup.png" width = "65" height = "64" id="img">
+        ADMIN
+    </a>
+</div>
 
     <div>
         <button type="button" class="btn" id="cart-btn" (click)="departmentService.showCart()">Cart</button>

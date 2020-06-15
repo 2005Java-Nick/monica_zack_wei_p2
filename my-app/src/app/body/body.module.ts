@@ -3,13 +3,16 @@ import { CommonModule } from '@angular/common';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 import { BodyComponent } from './body.component';
 import { DepartmentComponent } from './department/department.component';
+import { AdminComponent } from './admin/admin.component';
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
-  declarations: [SearchBarComponent, BodyComponent, DepartmentComponent],
+  declarations: [SearchBarComponent, BodyComponent, DepartmentComponent, AdminComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
     SearchBarComponent,

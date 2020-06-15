@@ -27,11 +27,13 @@ public class UserAccountDAO {
 	public UserAccount getUserAccount(UserData data) {
 
 		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
 		String hql = "FROM user_account UA WHERE UA.username = :username AND UA.password = :password";
 		Query query = session.createQuery(hql);
 		query.setParameter("username", data.getUsername());
 		query.setParameter("password", data.getPassword());
 		UserAccount listresults = (UserAccount) query.uniqueResult();
+		session.flush();
 		session.close();
 		return listresults;
 	}
@@ -68,7 +70,7 @@ public class UserAccountDAO {
 
 	public List<AccountType> getAccountPermissions(Token token) {
 		Session session = sf.openSession();
-		String hql = "FROM AccountType a INNER JOIN a.userAccount ua where ua.sessionToken = :sessionToken";
+		String hql = "SELECT a FROM AccountType a INNER JOIN a.userAccount ua where ua.sessionToken = :sessionToken";
 		Query query = session.createQuery(hql);
 		query.setParameter("sessionToken", token.getToken());
 		List<AccountType> listresults = (List<AccountType>) query.list();
