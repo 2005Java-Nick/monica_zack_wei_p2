@@ -13,7 +13,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 public class AmazonS3Config {
 
 	final static String region = "us-east-2";
-	public final static String bucket = "my-wei-bucket";
+	public final static String bucket = "revature-ogss";
 
 	@Bean
 	public AmazonS3 getAmazonS3Client() {

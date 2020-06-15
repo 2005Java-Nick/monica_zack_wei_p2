@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
     password: ''
   };
 
+  isLoggedIn: boolean;
 
   loginUser() {
     console.log('login submit clicked');
@@ -27,7 +28,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  constructor(private loginService: LoginService, private route: Router) { }
+  constructor(private loginService: LoginService, private route: Router) {}
 
   ngOnInit(): void {
   }

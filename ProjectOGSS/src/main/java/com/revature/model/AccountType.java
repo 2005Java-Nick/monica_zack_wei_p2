@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "account_type")
 public class AccountType {
@@ -26,6 +28,7 @@ public class AccountType {
 	}
 
 	@OneToMany(mappedBy = "accountType")
+	@JsonIgnore
 	private List<UserAccount> userAccount;
 
 	public AccountType(int id, String type) {

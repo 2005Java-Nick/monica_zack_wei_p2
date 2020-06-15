@@ -12,3 +12,31 @@ a{
     color: white;
 }
 
+.dropdown-item {
+    color: black;
+}
+
+.dropdown-item:hover {
+    color: black;
+    background-color: rgb(53, 204, 66);
+}
+
+.btn-dropdown {
+    color: white;
+    background-color: rgb(16, 70, 20);
+}
+
+.btn-dropdown:hover {
+    color: black;
+    background-color: rgb(53, 204, 66);
+}
+
+#cart-btn {
+    color: white;
+    background-color: rgb(28, 29, 126);
+}
+
+.btn-dropdown:hover {
+    color: black;
+    background-color: rgb(46, 114, 192);
+}

@@ -1,17 +1,31 @@
 <nav class="navbar justify-content-between">
     <a class="navbar-brand" (click)="onHomeClick()">
-        <img src="assets\images\grocery_logo.jpg" width = "65" height = "64" id="img">  
-       <b> Online Grocery Store   </b>
+        <img src="assets\images\grocery_logo.jpg" width="65" height="64" id="img">
+        <b> Online Grocery Store </b>
     </a>
 
-    <div>
-    <a class="navbar-brand" (click)="onRegisterClick()">
-        <img src="assets\images\signup.png" width = "65" height = "64" id="img">
-        Signup
-    </a>
-    <a class="navbar-brand" (click)="onLoginClick()">
-        <img src="assets\images\login1.png" width = "65" height = "64" id="img">
-        Login
-    </a>
+    <div class="btn-group">
+        <button type="button" class="btn btn-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            Department
+        </button>
+        <div class="dropdown-menu">
+            <a *ngFor="let department of departments" class="dropdown-item" (click)="departmentService.onDepartmentClick(department)">{{department.name}}</a>
+        </div>
     </div>
-  </nav>
+
+    <div>
+        <button type="button" class="btn" id="cart-btn" (click)="departmentService.showCart()">Cart</button>
+    </div>
+
+    <div *ngIf="!isLogin">
+        <a class="navbar-brand" (click)="onRegisterClick()">
+            <img src="assets\images\signup.png" width="65" height="64" id="img">
+            Signup
+        </a>
+        <a class="navbar-brand" (click)="onLoginClick()">
+            <img src="assets\images\login1.png" width="65" height="64" id="img">
+            Login
+        </a>
+    </div>
+</nav>
