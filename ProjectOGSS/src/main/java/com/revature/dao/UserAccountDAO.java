@@ -70,7 +70,7 @@ public class UserAccountDAO {
 
 	public List<AccountType> getAccountPermissions(Token token) {
 		Session session = sf.openSession();
-		String hql = "FROM AccountType a INNER JOIN a.userAccount ua where ua.sessionToken = :sessionToken";
+		String hql = "SELECT a FROM AccountType a INNER JOIN a.userAccount ua where ua.sessionToken = :sessionToken";
 		Query query = session.createQuery(hql);
 		query.setParameter("sessionToken", token.getToken());
 		List<AccountType> listresults = (List<AccountType>) query.list();

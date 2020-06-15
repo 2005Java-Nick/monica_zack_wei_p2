@@ -52,7 +52,7 @@ public class ProductsService {
 		if (hasPermission) {
 			url = fileSystem.uploadFile(multipartFile);
 			product.setImageUrl(url);
-			product.setImageName(multipartFile.getName());
+			product.setImageName(multipartFile.getOriginalFilename());
 			productsDAO.addProduct(product);
 		}
 

@@ -32,5 +32,7 @@ export class NavBarComponent implements OnInit {
   onRegisterClick(){
     this.route.navigateByUrl('/register');
   }
-
+  onAdminClick(){
+    this.route.navigateByUrl('/admin');
+  }
 }

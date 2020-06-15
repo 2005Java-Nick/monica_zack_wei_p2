@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,11 +64,10 @@ public class AppController {
 		return productsService.getProducts();
 	}
 
-	@RequestMapping(path = "/products", method = RequestMethod.POST)
+	@RequestMapping(path = "/products", method = RequestMethod.POST, consumes = "multipart/form-data")
 	@ResponseBody
-	public Product addProduct(@RequestParam(value = "token") Token token,
-			@RequestParam(value = "product") Product product,
-			@RequestParam(value = "file") MultipartFile multipartFile) {
+	public Product addProduct(@RequestPart(value = "token") Token token,
+			@RequestPart(value = "product") Product product, @RequestPart(value = "file") MultipartFile multipartFile) {
 		System.out.println("Add Products RAN");
 
 		return productsService.addProduct(token, product, multipartFile);
