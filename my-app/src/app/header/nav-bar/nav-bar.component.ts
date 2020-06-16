@@ -74,11 +74,6 @@ export class NavBarComponent implements OnInit {
   onRegisterClick() {
     this.route.navigateByUrl('/register');
   }
-<<<<<<< HEAD
-  onAdminClick(){
-    this.route.navigateByUrl('/admin');
-  }
-=======
   onAdminClick() {
     this.route.navigateByUrl('/admin');
   }
@@ -86,5 +81,4 @@ export class NavBarComponent implements OnInit {
     this.route.navigateByUrl('/cart');
     console.log(this.cart);
   }
->>>>>>> zack
 }

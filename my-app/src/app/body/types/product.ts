@@ -7,9 +7,5 @@ export class Product {
     imageName: string;
     imageUrl: string;
     tags: string;
-<<<<<<< HEAD
-    }
-=======
     buyQuantity: number;
 }
->>>>>>> zack

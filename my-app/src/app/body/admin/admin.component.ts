@@ -37,19 +37,11 @@ export class AdminComponent implements OnInit {
 
     const fd = new FormData();
     fd.append('token', new Blob([JSON.stringify(this.token)],
-<<<<<<< HEAD
-    {
-        type: 'application/json'
-      }));
-    fd.append('product', new Blob([JSON.stringify(this.product)],
-    {
-=======
       {
         type: 'application/json'
       }));
     fd.append('product', new Blob([JSON.stringify(this.product)],
       {
->>>>>>> zack
         type: 'application/json'
       }));
 
@@ -61,8 +53,6 @@ export class AdminComponent implements OnInit {
     this.addProduct();
   }
 
-<<<<<<< HEAD
-=======
 
 
   // Must give product ID, this function updates by ID of product. And needs a product
@@ -100,5 +90,4 @@ export class AdminComponent implements OnInit {
     
     this.adminService.deleteProduct(fd);
   }
->>>>>>> zack
 }

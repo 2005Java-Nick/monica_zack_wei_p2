@@ -15,8 +15,6 @@ export class AdminService {
       console.log(data);
     });
   }
-<<<<<<< HEAD
-=======
 
   updateProduct(fd: FormData) {
     this.http.put(environment.productsURL, fd).subscribe(data => {
@@ -29,5 +27,4 @@ export class AdminService {
       console.log(data);
     });
   }
->>>>>>> zack
 }
