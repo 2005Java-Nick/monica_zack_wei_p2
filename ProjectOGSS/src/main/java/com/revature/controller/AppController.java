@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.amazonaws.services.s3.AmazonS3;
 import com.revature.dao.DriverDAO;
 import com.revature.model.Driver;
 import com.revature.model.Invoice;
@@ -31,12 +30,6 @@ public class AppController {
 	private ProductsService productsService;
 	private OrdersService ordersService;
 	private DriverService driverService;
-	private AmazonS3 amazonS3;
-
-	@Autowired
-	public void setAmazonS3(AmazonS3 amazonS3) {
-		this.amazonS3 = amazonS3;
-	}
 
 	@Autowired
 	public void setLoginService(AccountService accountService) {

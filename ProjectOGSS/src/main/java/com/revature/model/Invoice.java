@@ -73,7 +73,7 @@ public class Invoice {
 	private UserAccount customer;
 
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private List<ItemList> itemList = new ArrayList<>();
+	private List<ItemList> itemList = new ArrayList<ItemList>();
 
 	@Transient
 	private Token token;

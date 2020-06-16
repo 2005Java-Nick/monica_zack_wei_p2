@@ -1,14 +1,70 @@
 img {
     vertical-align: middle;
     border-style: none;
+    border-radius: 25%;
+    padding: 0.5rem;
 }
 
-
 .navbar, .navbar-brand{
-padding: 0%;    
+    padding: 0%;    
+}
+
+.navbar-brand:hover {
+    color: rgb(152, 209, 118);
+    cursor: pointer;
 }
 
 a{
     color: white;
 }
 
+.dropdown-item {
+    color: black;
+}
+
+.dropdown-item:hover {
+    color: black;
+    background-color: rgb(53, 204, 66);
+    cursor: pointer;
+}
+
+.btn-dropdown {
+    color: white;
+    background-color: rgb(16, 70, 20);
+}
+
+.btn-dropdown:hover {
+    color: black;
+    background-color: rgb(53, 204, 66);
+    cursor: pointer;
+}
+
+#cart-btn {
+    color: white;
+    background-color: rgb(28, 29, 126);
+    margin: 1vw;
+}
+
+#cart-btn:hover {
+    color: black;
+    background-color: rgb(90, 148, 216);
+    cursor: pointer;
+}
+
+.user-btns {
+    color: white;
+}
+
+.user-btns:hover {
+    color: rgb(152, 209, 118);
+    cursor: pointer;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: rgb(152, 209, 118);
+    cursor: pointer;
+}

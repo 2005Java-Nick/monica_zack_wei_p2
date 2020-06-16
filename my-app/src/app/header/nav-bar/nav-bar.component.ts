@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src/app/login/services/login.service';
+import { LoginService } from '../../login/services/login.service';
 import { Subscription } from 'rxjs';
+import { Product } from '../../body/types/product';
+import { DepartmentService } from '../../body/department/services/department.service';
+import { Department } from '../../body/types/department';
+import { ProductService } from 'src/app/body/service/product.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,12 +14,50 @@ import { Subscription } from 'rxjs';
 })
 export class NavBarComponent implements OnInit {
 
+  loginService: LoginService;
+
   isLogin: boolean;
   isLoginSubscription: Subscription;
-  constructor(private route: Router, private loginService: LoginService) {
+
+  isAdmin: false;
+
+  products: Array<Product>;
+  departments: Array<Department>;
+  selectedDepartment: Department;
+  selectAddCart: Product;
+  cart: Map<number, number>;
+
+  productSubscription: Subscription;
+  departmentSubscription: Subscription;
+  selectedDepartmentSubscription: Subscription;
+  selectAddCartSubscription: Subscription;
+  cartSubscripton: Subscription;
+
+  constructor(private route: Router, loginService: LoginService, public departmentService: DepartmentService,
+              public productService: ProductService) {
+    this.loginService = loginService;
     this.isLogin = loginService.isLogin;
+    this.productService.getProducts();
     this.isLoginSubscription = loginService.loginStatusChanged.subscribe((value) => {
       this.isLogin = value;
+    });
+    this.products = productService.products;
+    this.departments = departmentService.departments;
+    this.selectedDepartment = departmentService.selectedDepartment;
+    this.productSubscription = productService.productListUpdated.subscribe((value) => {
+      this.products = value;
+    });
+    this.departmentSubscription = departmentService.departmentListUpdated.subscribe((value) => {
+      this.departments = value;
+    });
+    this.selectedDepartmentSubscription = departmentService.selectedDepartmentUpdated.subscribe((value) => {
+      this.selectedDepartment = value;
+    });
+    this.selectAddCartSubscription = departmentService.selectAddCartUpdated.subscribe((value) => {
+      this.selectAddCart = value;
+    });
+    this.cartSubscripton = departmentService.cartUpdated.subscribe((value) => {
+      this.cart = value;
     });
   }
 
@@ -29,10 +71,20 @@ export class NavBarComponent implements OnInit {
   onLoginClick() {
     this.route.navigateByUrl('/login');
   }
-  onRegisterClick(){
+  onRegisterClick() {
     this.route.navigateByUrl('/register');
   }
+<<<<<<< HEAD
   onAdminClick(){
     this.route.navigateByUrl('/admin');
   }
+=======
+  onAdminClick() {
+    this.route.navigateByUrl('/admin');
+  }
+  onCartClick() {
+    this.route.navigateByUrl('/cart');
+    console.log(this.cart);
+  }
+>>>>>>> zack
 }

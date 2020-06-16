@@ -26,6 +26,7 @@ export class LoginService{
   resetLogin(){
     this.isLogin = false;
     sessionStorage.clear();
+    this.loginStatusChanged.next(false);
   }
 
   authenticate(data: UserData): Observable<UserAccount> {

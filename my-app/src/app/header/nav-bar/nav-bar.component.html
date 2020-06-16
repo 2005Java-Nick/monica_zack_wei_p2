@@ -1,4 +1,7 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 <nav class="navbar justify-content-between">
+<<<<<<< HEAD
     <div>
     <a class="navbar-brand" (click)="onHomeClick()">
         <img src="assets\images\grocery_logo.jpg" width = "65" height = "64" id="img">  
@@ -11,14 +14,49 @@
     </a>
 </div>
 
+=======
+>>>>>>> zack
     <div>
-    <a class="navbar-brand" (click)="onRegisterClick()">
-        <img src="assets\images\signup.png" width = "65" height = "64" id="img">
-        Signup
-    </a>
-    <a class="navbar-brand" (click)="onLoginClick()">
-        <img src="assets\images\login1.png" width = "65" height = "64" id="img">
-        Login
-    </a>
+        <a class="navbar-brand" (click)="onHomeClick()">
+            <img src="assets\images\grocery_logo.jpg" width="65" height="64" id="img">
+            <b> Online Grocery Store </b>
+        </a>
     </div>
-  </nav>
+
+    <div class="btn-group">
+        <button type="button" class="btn btn-dropdown dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+            aria-expanded="false">
+            <i class="fas fa-store"></i> Department
+        </button>
+        <div class="dropdown-menu">
+            <a *ngFor="let department of departments" class="dropdown-item"
+                (click)="departmentService.onDepartmentClick(department)">{{department.name}}</a>
+        </div>
+    </div>
+
+    <app-search-bar></app-search-bar>
+
+    <button type="button" class="btn" id="cart-btn" (click)="onCartClick()"><i
+        class="fas fa-shopping-cart"></i> Cart </button>
+        
+    <div *ngIf="!isLogin" class="user-btns">
+        <a class="navbar-brand" (click)="onRegisterClick()">
+            <i class="fas fa-user-plus"></i>
+            Signup
+        </a>
+        <a class="navbar-brand" (click)="onLoginClick()">
+            <i class="fas fa-sign-in-alt"></i>
+            Login
+        </a>
+    </div>
+    <div *ngIf="isLogin" class="user-btns">
+        <a class="navbar-brand" (click)="onAdminClick()">
+            <i class="fas fa-user-shield"></i>
+            ADMIN
+        </a>
+        <a class="navbar-brand" (click)="loginService.resetLogin(); onHomeClick">
+            <i class="fas fa-sign-out-alt"></i>
+            Logout
+        </a>
+    </div>
+</nav>

@@ -3,7 +3,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
 
-<div class="container register">
+<div class="container register animate__animated animate__bounceInUp">
     <div class="row">
         <div class="col-md-3 register-left">
             <div *ngIf="user.accountType.type==='customer'; else driverBlock">
@@ -29,7 +29,7 @@
             </ul>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h3 class="register-heading">Customer Sign Up</h3>
+                    <h3 class="register-heading">Create an Account</h3>
                     <div class="row register-form">
                         <div class="col-md-6">
                             <div class="form-group">
@@ -136,7 +136,6 @@
                                 <input [(ngModel)]="user.password" type="password" class="form-control"
                                     placeholder="Password *" name="user_password" id="password" />
                             </div>
-
                             <input (click)="onSignUp()" type="submit" class="btnRegister" value="Register" />
                         </div>
                     </div>
