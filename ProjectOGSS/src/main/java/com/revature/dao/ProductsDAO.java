@@ -53,4 +53,26 @@ public class ProductsDAO {
 
 	}
 
+	public Product updateProduct(Product product) {
+
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		session.update(product);
+		session.flush();
+		tx.commit();
+		session.close();
+		return product;
+
+	}
+
+	public Boolean removeProduct(Product product) {
+
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+		session.delete(product);
+		session.flush();
+		tx.commit();
+		session.close();
+		return true;
+	}
 }

@@ -10,8 +10,7 @@ import com.revature.model.Invoice;
 import com.revature.struct.Token;
 
 @Service
-public class OrdersService {
-
+public class DriverService {
 	private OrdersDAO ordersDAO;
 
 	@Autowired
@@ -19,12 +18,8 @@ public class OrdersService {
 		this.ordersDAO = ordersDAO;
 	}
 
-	public Invoice checkout(Invoice invoice) {
-		return ordersDAO.checkout(invoice);
-	}
-
 	public List<Invoice> getInvoices(Token token) {
-		List<Invoice> results = ordersDAO.getInvoices(token);
+		List<Invoice> results = ordersDAO.getDriverOrders(token);
 		for (Invoice res : results) {
 			res.getDriver().setUsername("HIDDEN");
 			res.getDriver().setPassword("HIDDEN");
@@ -34,4 +29,12 @@ public class OrdersService {
 		return results;
 	}
 
+	public Invoice updateInvoice(Invoice invoice) {
+		Invoice res = ordersDAO.updateOrderDriver(invoice);
+		res.getDriver().setUsername("HIDDEN");
+		res.getDriver().setPassword("HIDDEN");
+		res.getCustomer().setUsername("HIDDEN");
+		res.getCustomer().setPassword("HIDDEN");
+		return res;
+	}
 }

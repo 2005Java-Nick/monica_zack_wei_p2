@@ -55,6 +55,7 @@ public class SessionFactoryUtil {
 					.addAnnotatedClass(com.revature.model.Invoice.class)
 					.addAnnotatedClass(com.revature.model.ItemList.class)
 					.addAnnotatedClass(com.revature.model.ItemListID.class)
+					.addAnnotatedClass(com.revature.model.Driver.class)
 					.addAnnotatedClass(com.revature.model.Product.class).getMetadataBuilder()
 					.applyImplicitNamingStrategy(ImplicitNamingStrategyJpaCompliantImpl.INSTANCE).build();
 			sf = metadata.getSessionFactoryBuilder().build();

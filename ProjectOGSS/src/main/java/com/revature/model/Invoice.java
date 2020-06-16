@@ -19,7 +19,7 @@ import javax.persistence.Transient;
 
 import com.revature.struct.Token;
 
-@Entity(name = "orders")
+@Entity
 @Table(name = "orders_invoice")
 public class Invoice {
 
@@ -77,9 +77,6 @@ public class Invoice {
 
 	@Transient
 	private Token token;
-
-	@Transient
-	private List<Product> checkoutList;
 
 	public int getId() {
 		return id;
@@ -223,14 +220,6 @@ public class Invoice {
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
-	}
-
-	public List<Product> getCheckoutList() {
-		return checkoutList;
-	}
-
-	public void setCheckoutList(List<Product> checkoutList) {
-		this.checkoutList = checkoutList;
 	}
 
 	public Token getToken() {

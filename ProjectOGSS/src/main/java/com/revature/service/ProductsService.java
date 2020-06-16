@@ -9,16 +9,16 @@ import org.springframework.web.multipart.MultipartFile;
 import com.revature.dao.ProductsDAO;
 import com.revature.dao.UserAccountDAO;
 import com.revature.fileSystem.FileSystem;
-import com.revature.model.AccountType;
 import com.revature.model.Product;
 import com.revature.struct.Token;
 
 @Service
 public class ProductsService {
 
-	UserAccountDAO userAccountDAO;
-	ProductsDAO productsDAO;
-	FileSystem fileSystem;
+	private UserAccountDAO userAccountDAO;
+	private ProductsDAO productsDAO;
+	private FileSystem fileSystem;
+	private AccountService accountService;
 
 	@Autowired
 	public void setProductsDAO(ProductsDAO productsDAO) {
@@ -35,21 +35,18 @@ public class ProductsService {
 		this.fileSystem = fileSystem;
 	}
 
+	@Autowired
+	public void setAccountService(AccountService accountService) {
+		this.accountService = accountService;
+	}
+
 	public List<Product> getProducts() {
 		return productsDAO.getProducts();
 	}
 
 	public Product addProduct(Token token, Product product, MultipartFile multipartFile) {
-		boolean hasPermission = false;
-		List<AccountType> accountTypes = userAccountDAO.getAccountPermissions(token);
-		for (AccountType a : accountTypes) {
-			if (a.getType().equals("admin")) {
-				hasPermission = true;
-			}
-		}
-
 		String url;
-		if (hasPermission) {
+		if (accountService.hasPermission(token, "admin")) {
 			url = fileSystem.uploadFile(multipartFile);
 			product.setImageUrl(url);
 			product.setImageName(multipartFile.getOriginalFilename());
@@ -57,6 +54,21 @@ public class ProductsService {
 		}
 
 		return product;
+	}
+
+	public Product updateProduct(Token token, Product product, MultipartFile multipartFile) {
+		String url;
+		if (accountService.hasPermission(token, "admin")) {
+			url = fileSystem.uploadFile(multipartFile);
+			product.setImageUrl(url);
+			product.setImageName(multipartFile.getOriginalFilename());
+			productsDAO.updateProduct(product);
+		}
+		return product;
+	}
+
+	public Boolean removeProduct(Token token, Product product) {
+		return productsDAO.removeProduct(product);
 	}
 
 }

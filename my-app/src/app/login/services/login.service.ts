@@ -39,7 +39,7 @@ export class LoginService{
       (obser) => {
         this.authenticate(data).subscribe(
           (userToken: UserAccount) => {
-            console.log(userToken.accountType.type);
+            console.log(userToken);
             sessionStorage.setItem('Token', userToken.sessionToken);
             console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
