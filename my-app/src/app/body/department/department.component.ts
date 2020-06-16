@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DepartmentService } from './services/department.service';
-import { Subscription, Subject } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { Product } from '../types/product';
 import { Department } from '../types/department';
 import { ProductService } from '../service/product.service';
-
-
 
 @Component({
   selector: 'app-department',
@@ -13,12 +11,12 @@ import { ProductService } from '../service/product.service';
   styleUrls: ['./department.component.css']
 })
 export class DepartmentComponent implements OnInit {
-
+  default = 0;
   products: Array<Product>;
   department: Array<Department>;
   selectedDepartment: Department;
   selectedProduct: Product;
-  cart: Array<Product>;
+  cart: Map<number, number>;
 
   productSubscription: Subscription;
   departmentSubscription: Subscription;
@@ -27,6 +25,8 @@ export class DepartmentComponent implements OnInit {
   cartSubscripton: Subscription;
 
   constructor(public departmentService: DepartmentService, public productService: ProductService) {
+    this.cart = departmentService.cart;
+    this.selectedProduct = departmentService.selectedProduct;
     this.products = productService.products;
     this.department = departmentService.departments;
     this.selectedDepartment = departmentService.selectedDepartment;

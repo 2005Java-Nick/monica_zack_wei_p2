@@ -19,22 +19,19 @@ export class DepartmentService {
     new Department(5, 'Meal Kit')
   ];
 
-  cart: Array<Product>;
+  cart: Map<number, number>;
 
   selectedDepartment: Department = this.departments[0];
   selectedProduct: Product;
 
-  productListUpdated: Subject<Array<Product>> = new Subject<Array<Product>>();
   departmentListUpdated: Subject<Array<Department>> = new Subject<Array<Department>>();
   selectedDepartmentUpdated: Subject<Department> = new Subject<Department>();
   selectAddCartUpdated: Subject<Product> = new Subject<Product>();
-  cartUpdated: Subject<Array<Product>> = new Subject<Array<Product>>();
+  cartUpdated: Subject<Map<number, number>> = new Subject<Map<number, number>>();
 
   constructor(private route: Router) {
-    this.cart = new Array<Product>();
-    this.productListUpdated.subscribe((value) => {
-      this.products = value;
-    });
+    this.cart = new Map<number, number>();
+    this.selectedProduct = new Product();
     this.departmentListUpdated.subscribe((value) => {
       this.departments = value;
     });
@@ -49,18 +46,23 @@ export class DepartmentService {
     });
   }
 
-  onDepartmentClick(department){
+  onDepartmentClick(department) {
     this.route.navigateByUrl('/department');
     this.selectedDepartmentUpdated.next(department);
   }
-  onAddCartClick(product, value){
+  onAddCartClick(product, value) {
     this.selectAddCartUpdated.next(product);
-    for (let i = 0; i < value; i++) {
-      this.cart.push(product);
+    if (value > this.selectedProduct.inventoryQuantity) {
+      value = this.selectedProduct.inventoryQuantity;
     }
-    this.selectedProduct.inventoryQuantity -= value;
+    const key = product.id;
+    if (this.cart.has(key)) {
+      const currentAmount = this.cart.get(key);
+      this.cart.set(key, currentAmount + value);
+    } else {
+      this.cart.set(key, value);
+    }
   }
-  showCart(){
-    console.log(this.cart);
-  }
+
+  
 }

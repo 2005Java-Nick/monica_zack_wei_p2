@@ -28,4 +28,9 @@ export class ProductService {
       this.productListUpdated.next(value);
     });
   }
+
+  getProduct(id: number): Product {
+    console.log('Products: ' + this.products);
+    return this.products.find(product => product.id === id);
+  }
 }

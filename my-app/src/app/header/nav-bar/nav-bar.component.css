@@ -50,3 +50,21 @@ a{
     background-color: rgb(90, 148, 216);
     cursor: pointer;
 }
+
+.user-btns {
+    color: white;
+}
+
+.user-btns:hover {
+    color: rgb(152, 209, 118);
+    cursor: pointer;
+}
+
+.navbar-brand {
+    color: white;
+}
+
+.navbar-brand:hover {
+    color: rgb(152, 209, 118);
+    cursor: pointer;
+}

@@ -7,5 +7,5 @@ export class Product {
     imageName: string;
     imageUrl: string;
     tags: string;
-    buyQuantity = 1;
+    buyQuantity: number;
 }

@@ -4,11 +4,12 @@ import { BodyComponent } from './body.component';
 import { DepartmentComponent } from './department/department.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
+import { CartComponent } from './cart/cart.component';
 
 
 
 @NgModule({
-  declarations: [BodyComponent, DepartmentComponent, AdminComponent],
+  declarations: [BodyComponent, DepartmentComponent, AdminComponent, CartComponent],
   imports: [
     CommonModule,
     FormsModule

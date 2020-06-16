@@ -15,7 +15,7 @@
                         <h2>{{product.productName}}</h2>
                         <p class="price">${{product.price}} ea</p>
                         <p id="description">{{product.discription}}</p>
-                        <input [(ngModel)]="product.buyQuantity" id="quantity-counter" type="number" placeholder="1"
+                        <input [(ngModel)]="product.buyQuantity" id="quantity-counter" type="number" [placeholder]="default"
                             min="1" [max]="product.inventoryQuantity" step="1" />
                         <p><button class="btn" (click)="departmentService.onAddCartClick(product, product.buyQuantity)">
                                 <i class="fas fa-cart-plus"></i> Add
@@ -30,7 +30,7 @@
                             <p class="price">${{product.price}} ea</p>
                             <p id="description">{{product.discription}}</p>
                             <input [(ngModel)]="product.buyQuantity" id="quantity-counter" type="number"
-                                placeholder="0" min="0" [max]="0" step="0" disabled />
+                                placeholder="0" min="0" max="0" step="0" disabled />
                             <p><button class="btn" disabled> <i
                                         class="fas fa-times-circle"></i>
                                     SOLD

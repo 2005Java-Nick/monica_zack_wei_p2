@@ -25,7 +25,7 @@ export class NavBarComponent implements OnInit {
   departments: Array<Department>;
   selectedDepartment: Department;
   selectAddCart: Product;
-  cart: Array<Product>;
+  cart: Map<number, number>;
 
   productSubscription: Subscription;
   departmentSubscription: Subscription;
@@ -44,7 +44,7 @@ export class NavBarComponent implements OnInit {
     this.products = productService.products;
     this.departments = departmentService.departments;
     this.selectedDepartment = departmentService.selectedDepartment;
-    this.productSubscription = departmentService.productListUpdated.subscribe((value) => {
+    this.productSubscription = productService.productListUpdated.subscribe((value) => {
       this.products = value;
     });
     this.departmentSubscription = departmentService.departmentListUpdated.subscribe((value) => {
@@ -76,5 +76,9 @@ export class NavBarComponent implements OnInit {
   }
   onAdminClick() {
     this.route.navigateByUrl('/admin');
+  }
+  onCartClick() {
+    this.route.navigateByUrl('/cart');
+    console.log(this.cart);
   }
 }
