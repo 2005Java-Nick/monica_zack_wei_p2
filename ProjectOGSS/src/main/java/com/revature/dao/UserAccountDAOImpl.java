@@ -69,17 +69,20 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 		Session session = sf.openSession();
 		Transaction tx = session.beginTransaction();
 		session.save(userAccount);
-		if (userAccount.getAccountType().getType().equals("driver")) {
-			Driver d = new Driver();
-			d.setDriver(userAccount);
-			d.setOnShift(false);
-			session.save(d);
+		if (userAccount.getAccountType() != null) {
+
+			if (userAccount.getAccountType().getType().equals("driver")) {
+				Driver d = new Driver();
+				d.setDriver(userAccount);
+				d.setOnShift(false);
+				session.save(d);
+			}
 		}
+
 		session.flush();
 		tx.commit();
 		session.close();
 		return userAccount;
-
 	}
 
 	@Override
@@ -117,6 +120,8 @@ public class UserAccountDAOImpl implements UserAccountDAO {
 		if (listresults != null) {
 			session.detach(listresults);
 			session.update(userAccount);
+			tx.commit();
+			session.close();
 			return userAccount;
 		}
 		tx.commit();

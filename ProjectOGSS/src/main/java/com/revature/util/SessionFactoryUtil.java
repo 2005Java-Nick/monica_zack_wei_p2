@@ -46,6 +46,7 @@ public class SessionFactoryUtil {
 			settings.put("hibernate.connection.username", username);
 			settings.put("hibernate.connection.password", password);
 			settings.put("hibernate.show_sql", "true");
+			settings.put("hibernate.format_sql", "true");
 			// settings.put("hibernate.hbm2dd1.auto", "update");
 			StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder().applySettings(settings)
 					.build();

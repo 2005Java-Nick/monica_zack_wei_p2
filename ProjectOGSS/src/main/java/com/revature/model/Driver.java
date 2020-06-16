@@ -9,6 +9,8 @@ import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "delivery_driver_status")
 public class Driver {
@@ -18,6 +20,7 @@ public class Driver {
 	@OneToOne(fetch = FetchType.EAGER)
 	@MapsId
 	@JoinColumn(name = "user_account_id")
+	@JsonIgnore
 	UserAccount driver;
 
 	@Column(name = "on_shift")

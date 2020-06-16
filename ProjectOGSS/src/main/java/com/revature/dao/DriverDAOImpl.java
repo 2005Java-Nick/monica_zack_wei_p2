@@ -86,4 +86,20 @@ public class DriverDAOImpl implements DriverDAO {
 		session.close();
 		return listresults.getOnShift();
 	}
+
+	@Override
+	public Driver getDriverShiftStatus(Token token) {
+		Session session = sf.openSession();
+		Transaction tx = session.beginTransaction();
+
+		String hql = "SELECT driv FROM Driver driv INNER JOIN driv.driver dr WHERE dr.sessionToken = :sessionToken";
+		Query query = session.createQuery(hql);
+		query.setParameter("sessionToken", token.getToken());
+		Driver listresults = (Driver) query.uniqueResult();
+
+		session.flush();
+		session.close();
+		return listresults;
+
+	}
 }
