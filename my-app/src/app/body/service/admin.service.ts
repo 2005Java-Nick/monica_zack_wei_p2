@@ -15,4 +15,16 @@ export class AdminService {
       console.log(data);
     });
   }
+
+  updateProduct(fd: FormData) {
+    this.http.put(environment.productsURL, fd).subscribe(data => {
+      console.log(data);
+    });
+  }
+
+  deleteProduct(fd: FormData) {
+    this.http.put(environment.productsDeleteURL, fd).subscribe(data => {
+      console.log(data);
+    });
+  }
 }

@@ -37,11 +37,11 @@ export class AdminComponent implements OnInit {
 
     const fd = new FormData();
     fd.append('token', new Blob([JSON.stringify(this.token)],
-    {
+      {
         type: 'application/json'
       }));
     fd.append('product', new Blob([JSON.stringify(this.product)],
-    {
+      {
         type: 'application/json'
       }));
 
@@ -53,4 +53,41 @@ export class AdminComponent implements OnInit {
     this.addProduct();
   }
 
+
+
+  // Must give product ID, this function updates by ID of product. And needs a product
+  updateProduct() {
+    this.token.token = sessionStorage.getItem('Token');
+
+    const fd = new FormData();
+    fd.append('token', new Blob([JSON.stringify(this.token)],
+      {
+        type: 'application/json'
+      }));
+    fd.append('product', new Blob([JSON.stringify(this.product)],
+      {
+        type: 'application/json'
+      }));
+
+    fd.append('file', this.file[0], this.file.name);
+
+    this.adminService.updateProduct(fd);
+  }
+
+  // Must give product ID, this function updates by ID of product. And needs a product
+  deleteProduct() {
+    this.token.token = sessionStorage.getItem('Token');
+
+    const fd = new FormData();
+    fd.append('token', new Blob([JSON.stringify(this.token)],
+      {
+        type: 'application/json'
+      }));
+    fd.append('product', new Blob([JSON.stringify(this.product)],
+      {
+        type: 'application/json'
+      }));
+    
+    this.adminService.deleteProduct(fd);
+  }
 }
