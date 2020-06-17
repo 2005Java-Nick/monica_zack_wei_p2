@@ -3,6 +3,7 @@
     width: 100vw;
     padding: 0px;
     background: url("src\assets\images\wallpaper_grocery.jpg");
+    background-position: 0rem 4rem;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

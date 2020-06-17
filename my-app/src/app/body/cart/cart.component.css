@@ -1,6 +1,38 @@
+#master-container {
+    background-image: url(../../../assets/images/retina_wood.png);
+    background-repeat: repeat;
+    padding: 2rem;
+    height: max-content;
+}
+
 .cart-container {
-    height: 80%;
     width: 80%;
     margin: 5%;
-    background-color: rgb(196, 217, 223);
+    background-color: rgb(221, 228, 230);
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.empty-container {
+    width: 40%;
+    margin: 5% 20% 23% 20%;
+    padding: 1rem;
+    background-color: rgb(221, 228, 230);
+    border-radius: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    text-align: center;
+    font-size: 20px;
+}
+
+.thumbnail {
+    margin: 0.3rem;
 }

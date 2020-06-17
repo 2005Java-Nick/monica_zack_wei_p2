@@ -30,7 +30,15 @@ export class ProductService {
   }
 
   getProduct(id: number): Product {
-    console.log('Products: ' + this.products);
     return this.products.find(product => product.id === id);
   }
+
+  calculateItemSubtotal(price, quantity) {
+    return ((price * 100) * quantity) / 100;
+  }
+
+  quantityCounterUpdated(event: any, key: number) {
+    this.getProduct(key).buyQuantity = event.target.value;
+  }
+
 }

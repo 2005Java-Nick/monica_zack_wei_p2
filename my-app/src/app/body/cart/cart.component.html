@@ -1,101 +1,105 @@
-
-<div class="cart-container animate__animated animate__jackInTheBox" *ngIf="cartEmpty()">
-    <h1>Your cart is currently empty!</h1>
-</div>
-<div class="cart-container animate__animated animate__jackInTheBox" *ngIf="!cartEmpty()">
-    <div class="row">
-        <div class="col-sm-12 col-md-10 col-md-offset-1">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th class="text-center">Price</th>
-                        <th class="text-center">Total</th>
-                        <th> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of cart | keyvalue">
-                        <td class="col-sm-8 col-md-6">
-                            <div class="media">
-                                <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                        [src]="productService.getProduct(item.key).imageUrl"
-                                        [alt]="productService.getProduct(item.key).productName"
-                                        style="width: 72px; height: 72px;"> </a>
-                                <div class="media-body">
-                                    <h4 class="media-heading"><a
-                                            href="#">{{productService.getProduct(item.key).productName}}</a></h4>
-                                    <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+<div id="master-container">
+    <div class="empty-container animate__animated animate__jackInTheBox" *ngIf="cartEmpty()">
+        <h1>Your cart is currently empty!</h1>
+        <br>
+        <div><button type="button" class="btn btn-primary" (click)="onClickContinueShopping()">
+                <i class="fas fa-shopping-cart"></i> Continue Shopping
+            </button></div>
+    </div>
+    <div class="cart-container animate__animated animate__jackInTheBox" *ngIf="!cartEmpty()">
+        <div class="row">
+            <div class="col-sm-18 col-md-16 col-md-offset-1" id="cart-form">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Quantity</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Total</th>
+                            <th> </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of cart | keyvalue: originalOrder; let i = index">
+                            <td class="col-sm-8 col-md-6">
+                                <div class="media">
+                                    <a class="thumbnail pull-left" href="#"> <img class="media-object"
+                                            [src]="productService.getProduct(item.key).imageUrl"
+                                            [alt]="productService.getProduct(item.key).productName"
+                                            style="width: 72px; height: 72px;"> </a>
+                                    <div class="media-body">
+                                        <h4 class="media-heading"><a
+                                                href="#">{{productService.getProduct(item.key).productName}}</a></h4>
+                                        <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="col-sm-1 col-md-1" style="text-align: center">
-                            <input [(ngModel)]="productService.getProduct(item.key).buyQuantity" id="quantity-counter" type="number"
-                                    placeholder="1" value="1" min="1" [max]="productService.getProduct(item.key).inventoryQuantity"
-                                    step="1" name="removeCounter"/>
-                        </td>
-                        <td class="col-sm-1 col-md-1 text-center">
-                            <strong>${{productService.getProduct(item.key).price}}</strong></td>
-                        <td class="col-sm-1 col-md-1 text-center">
-                            <strong>${{productService.getProduct(item.key).price * productService.getProduct(item.key).buyQuantity}}</strong>
-                        </td>
-                        <td class="col-sm-1 col-md-1">
-                            <button type="button" class="btn btn-danger">
-                                <span class="glyphicon glyphicon-remove"></span> Remove
-                            </button></td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                            <h5>Subtotal</h5>
-                        </td>
-                        <td class="text-right">
-                            <h5><strong>$24.59</strong></h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                            <h5>Estimated shipping</h5>
-                        </td>
-                        <td class="text-right">
-                            <h5><strong>$6.94</strong></h5>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                            <h3>Total</h3>
-                        </td>
-                        <td class="text-right">
-                            <h3><strong>$31.53</strong></h3>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>
-                            <button type="button" class="btn btn-default">
-                                <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
-                            </button></td>
-                        <td>
-                            <button type="button" class="btn btn-success">
-                                Checkout <span class="glyphicon glyphicon-play"></span>
-                            </button></td>
-                    </tr>
-                </tbody>
-            </table>
+                            </td>
+                            <td class="col-sm-1 col-md-1" style="text-align: center">
+                                <input [(ngModel)]="productService.getProduct(item.key).buyQuantity" id="quantity-counter" type="number"
+                                    [(value)]="productService.getProduct(item.key).buyQuantity" min="1"
+                                    [(max)]="productService.getProduct(item.key).inventoryQuantity + productService.getProduct(item.key).buyQuantity"
+                                    step="1" name="removeCounter" (change)="productService.quantityCounterUpdated($event, item.key); calculateSubtotal()"/>
+                                    {{productService.getProduct(item.key).buyQuantity}}
+                            </td>
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong>${{productService.getProduct(item.key).price}}</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center">
+                                <strong>${{productService.calculateItemSubtotal(productService.getProduct(item.key).price, item.value) | number:'1.2-2'}}</strong>
+                            </td>
+                            <td class="col-sm-7 col-md-7">
+                                <button type="button" class="btn btn-danger"
+                                    (click)="departmentService.removeItem(item.key)">
+                                    <i class="fas fa-cart-arrow-down"></i> Remove
+                                </button></td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                                <h5>Subtotal</h5>
+                            </td>
+                            <td class="text-right">
+                                <h5><strong>{{subtotal | number:'1.2-2'}}</strong></h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                                <h5>Estimated shipping</h5>
+                            </td>
+                            <td class="text-right">
+                                <h5><strong>$6.94</strong></h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                                <h3>Total</h3>
+                            </td>
+                            <td class="text-right">
+                                <h3><strong>$31.53</strong></h3>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><button type="button" class="btn btn-primary" (click)="onClickContinueShopping()">
+                                    <i class="fas fa-shopping-cart"></i> Continue Shopping
+                                </button></td>
+                            <td> </td>
+                            <td> </td>
+                            <td> </td>
+                            <td>
+                                <button type="button" class="btn btn-success">
+                                    <i class="fas fa-cash-register"></i> Checkout
+                                </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
-<!--
-                                <p><button class="btn">
-                                        <i class="fas fa-cart-plus"></i> Remove </button></p>-->
