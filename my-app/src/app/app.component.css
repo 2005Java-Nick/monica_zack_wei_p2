@@ -1,9 +1,10 @@
 #mycontainer{
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     padding: 0px;
     background: url("src\assets\images\wallpaper_grocery.jpg");
     background-position: 0rem 4rem;
+    background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
