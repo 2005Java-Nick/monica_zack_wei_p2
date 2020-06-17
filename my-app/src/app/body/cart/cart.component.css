@@ -3,6 +3,7 @@
     background-repeat: repeat;
     padding: 2rem;
     height: max-content;
+    min-height: 100vh;
 }
 
 .cart-container {

@@ -5,7 +5,7 @@
 }
 .my-row1{
     
-    height: calc( 100% - 8rem );
+    height: calc( 100vh - 8rem );
 }
 
 #words{

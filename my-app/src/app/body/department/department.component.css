@@ -2,6 +2,7 @@
     background-image: url(../../../assets/images/retina_wood.png);
     background-repeat: repeat;
     padding: 2rem;
+    min-height: 100vh;
 }
 
 .product-display {

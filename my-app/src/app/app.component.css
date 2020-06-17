@@ -2,8 +2,9 @@
     min-height: 100vh;
     width: 100vw;
     padding: 0px;
+    margin: 0px;
     background: url("src\assets\images\wallpaper_grocery.jpg");
-    background-position: 0rem 4rem;
+    background-position: center;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
