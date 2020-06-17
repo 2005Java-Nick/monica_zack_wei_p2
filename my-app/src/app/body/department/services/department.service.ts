@@ -3,6 +3,7 @@ import { Department } from '../../types/department';
 import { Product } from '../../types/product';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { ProductService } from '../../service/product.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class DepartmentService {
   products: Array<Product>;
 
   departments: Array<Department> = [
+    new Department(0, 'Browse'),
     new Department(1, 'Fresh Produce'),
     new Department(2, 'Bakery'),
     new Department(3, 'Beverages'),
@@ -29,7 +31,7 @@ export class DepartmentService {
   selectAddCartUpdated: Subject<Product> = new Subject<Product>();
   cartUpdated: Subject<Map<number, number>> = new Subject<Map<number, number>>();
 
-  constructor(private route: Router) {
+  constructor(private route: Router, public productService: ProductService) {
     this.cart = new Map<number, number>();
     this.selectedProduct = new Product();
     this.departmentListUpdated.subscribe((value) => {
@@ -47,9 +49,10 @@ export class DepartmentService {
   }
 
   onDepartmentClick(department) {
-    this.route.navigateByUrl('/department');
     this.selectedDepartmentUpdated.next(department);
+    this.route.navigateByUrl('/department');
   }
+
   onAddCartClick(product, value) {
     this.selectAddCartUpdated.next(product);
     if (value > this.selectedProduct.inventoryQuantity) {
@@ -62,7 +65,11 @@ export class DepartmentService {
     } else {
       this.cart.set(key, value);
     }
+    this.selectedProduct.inventoryQuantity -= value;
   }
 
-  
+  removeItem(i) {
+    this.productService.getProduct(i).inventoryQuantity += this.cart.get(i);
+    this.cart.delete(i);
+  }
 }

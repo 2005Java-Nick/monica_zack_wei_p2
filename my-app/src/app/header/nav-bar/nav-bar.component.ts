@@ -79,6 +79,5 @@ export class NavBarComponent implements OnInit {
   }
   onCartClick() {
     this.route.navigateByUrl('/cart');
-    console.log(this.cart);
   }
 }
