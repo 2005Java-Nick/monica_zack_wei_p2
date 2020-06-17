@@ -15,10 +15,7 @@
 }
 
 #my-form1{
-    border: solid;
-    border-width: thin;
-    border-width: 2em;
-    border-color: teal;
+    background-color:  white;
     padding: 25px;
 }
 
@@ -29,3 +26,18 @@ button.calendar, button.calendar:active {
     background-size: 23px;
     background-position: center;
   }
+
+
+  #productInterface{
+    
+  }
+
+  #productCardInterface{
+      background-color: black;
+  }
+
+  .btn{
+      margin-right: 5px;
+  }
+  
+ 

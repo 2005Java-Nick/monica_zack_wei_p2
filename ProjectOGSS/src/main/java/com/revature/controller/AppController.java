@@ -16,6 +16,7 @@ import com.revature.model.Driver;
 import com.revature.model.Invoice;
 import com.revature.model.Product;
 import com.revature.model.UserAccount;
+import com.revature.requestwrappers.TokenAndProduct;
 import com.revature.service.AccountService;
 import com.revature.service.DriverService;
 import com.revature.service.OrdersService;
@@ -83,20 +84,17 @@ public class AppController {
 		return productsService.addProduct(token, product, multipartFile);
 	}
 
-	@RequestMapping(path = "/products", method = RequestMethod.PUT, consumes = "multipart/form-data")
-	public Product updateProduct(@RequestPart(value = "token") Token token,
-			@RequestPart(value = "product") Product product, @RequestPart(value = "file") MultipartFile multipartFile) {
+	@RequestMapping(path = "/products", method = RequestMethod.PUT)
+	public Product updateProduct(@RequestBody TokenAndProduct obj) {
 		System.out.println("UPDATE Products RAN");
 
-		return productsService.updateProduct(token, product, multipartFile);
+		return productsService.updateProduct(obj.getToken(), obj.getProduct());
 	}
 
-	@RequestMapping(path = "/products", method = RequestMethod.DELETE, consumes = "multipart/form-data")
-	public Boolean deleteProduct(@RequestPart(value = "token") Token token,
-			@RequestPart(value = "product") Product product) {
-		System.out.println("UPDATE Products RAN");
-
-		return productsService.removeProduct(token, product);
+	@RequestMapping(path = "/products/delete", method = RequestMethod.PUT)
+	public Boolean deleteProduct(@RequestBody TokenAndProduct obj) {
+		System.out.println("DELETE Products RAN");
+		return productsService.removeProduct(obj.getToken(), obj.getProduct());
 	}
 
 	@RequestMapping(path = "/invoices", method = RequestMethod.GET)

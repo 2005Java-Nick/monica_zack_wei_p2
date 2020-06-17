@@ -13,7 +13,7 @@ public interface ProductsService {
 
 	Product addProduct(Token token, Product product, MultipartFile multipartFile);
 
-	Product updateProduct(Token token, Product product, MultipartFile multipartFile);
+	Product updateProduct(Token token, Product product);
 
 	Boolean removeProduct(Token token, Product product);
 

@@ -19,8 +19,14 @@ export class AdminComponent implements OnInit {
     token: ''
   };
 
+  currentProducts: Product[];
 
-  constructor(private adminService: AdminService, private productServices: ProductService) { }
+  constructor(private adminService: AdminService, private productServices: ProductService) {
+    this.currentProducts = this.productServices.products;
+    this.productServices.productListUpdated.subscribe((value) => {
+      this.currentProducts = value;
+    });
+   }
 
   ngOnInit(): void {
     this.product = new Product();
@@ -56,38 +62,18 @@ export class AdminComponent implements OnInit {
 
 
   // Must give product ID, this function updates by ID of product. And needs a product
-  updateProduct() {
+  updateProduct(i) {
     this.token.token = sessionStorage.getItem('Token');
+    const tempVar = { token: this.token, product: this.currentProducts[i] };
 
-    const fd = new FormData();
-    fd.append('token', new Blob([JSON.stringify(this.token)],
-      {
-        type: 'application/json'
-      }));
-    fd.append('product', new Blob([JSON.stringify(this.product)],
-      {
-        type: 'application/json'
-      }));
-
-    fd.append('file', this.file[0], this.file.name);
-
-    this.adminService.updateProduct(fd);
+    this.adminService.updateProduct(tempVar);
   }
 
   // Must give product ID, this function updates by ID of product. And needs a product
-  deleteProduct() {
+  deleteProduct(i) {
     this.token.token = sessionStorage.getItem('Token');
-
-    const fd = new FormData();
-    fd.append('token', new Blob([JSON.stringify(this.token)],
-      {
-        type: 'application/json'
-      }));
-    fd.append('product', new Blob([JSON.stringify(this.product)],
-      {
-        type: 'application/json'
-      }));
+    const tempVar = { token: this.token, product: this.currentProducts[i] };
     
-    this.adminService.deleteProduct(fd);
+    this.adminService.deleteProduct(tempVar);
   }
 }

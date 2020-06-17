@@ -59,12 +59,8 @@ public class ProductsServiceImpl implements ProductsService {
 	}
 
 	@Override
-	public Product updateProduct(Token token, Product product, MultipartFile multipartFile) {
-		String url;
+	public Product updateProduct(Token token, Product product) {
 		if (accountService.hasPermission(token, "admin")) {
-			url = fileSystem.uploadFile(multipartFile);
-			product.setImageUrl(url);
-			product.setImageName(multipartFile.getOriginalFilename());
 			productsDAO.updateProduct(product);
 		}
 		return product;
@@ -72,7 +68,13 @@ public class ProductsServiceImpl implements ProductsService {
 
 	@Override
 	public Boolean removeProduct(Token token, Product product) {
-		return productsDAO.removeProduct(product);
+		if (accountService.hasPermission(token, "admin")) {
+			if (productsDAO.removeProduct(product)) {
+				fileSystem.deleteFile(product);
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

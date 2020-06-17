@@ -36,7 +36,9 @@ public class HeaderFilter implements Filter {
 			throws IOException, ServletException {
 		HttpServletResponse res = (HttpServletResponse) response;
 		res.setHeader("Access-Control-Allow-Origin", "*");
-		res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+		res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, OPTIONS, DELETE");
+		res.setHeader("Access-Control-Max-Age", "3600");
+		res.setHeader("Access-Control-Allow-Headers", "x-requested-with, Content-Type");
 		chain.doFilter(request, response);
 	}
 
