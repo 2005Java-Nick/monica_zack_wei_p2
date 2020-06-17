@@ -21,6 +21,7 @@ export class DepartmentService {
     new Department(5, 'Meal Kit')
   ];
 
+  
   cart: Map<number, number>;
 
   selectedDepartment: Department = this.departments[0];

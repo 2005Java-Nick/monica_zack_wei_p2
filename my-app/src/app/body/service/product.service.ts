@@ -16,6 +16,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) {
     this.productListUpdated.subscribe((value) => {
+      console.log("Products Updated");
       this.products = value;
     });
    }

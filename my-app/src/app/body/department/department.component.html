@@ -20,7 +20,7 @@
                         <p id="description">{{product.discription}}</p>
                         <input [(ngModel)]="product.buyQuantity" id="quantity-counter" type="number" [placeholder]="default"
                             min="1" [max]="product.inventoryQuantity" step="1" />
-                        <p><button class="btn" (click)="departmentService.onAddCartClick(product, product.buyQuantity)">
+                        <p><button class="btn" (click)="cartService.addItem(product, product.buyQuantity)">
                                 <i class="fas fa-cart-plus"></i> Add
                                 To Cart </button></p>
                     </div>

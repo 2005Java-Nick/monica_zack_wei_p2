@@ -20,35 +20,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let item of cart | keyvalue: originalOrder; let i = index">
+                        <tr *ngFor="let item of cartService.cart; let i = index">
                             <td class="col-sm-8 col-md-6">
                                 <div class="media">
                                     <a class="thumbnail pull-left" href="#"> <img class="media-object"
-                                            [src]="productService.getProduct(item.key).imageUrl"
-                                            [alt]="productService.getProduct(item.key).productName"
+                                            [src]="item.product.imageUrl"
+                                            [alt]="item.product.productName"
                                             style="width: 72px; height: 72px;"> </a>
                                     <div class="media-body">
                                         <h4 class="media-heading"><a
-                                                href="#">{{productService.getProduct(item.key).productName}}</a></h4>
+                                                href="#">{{item.product.productName}}</a></h4>
                                         <span>Status: </span><span class="text-success"><strong>In Stock</strong></span>
                                     </div>
                                 </div>
                             </td>
                             <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <input [(ngModel)]="productService.getProduct(item.key).buyQuantity" id="quantity-counter" type="number"
-                                    [(value)]="productService.getProduct(item.key).buyQuantity" min="1"
-                                    [(max)]="productService.getProduct(item.key).inventoryQuantity + productService.getProduct(item.key).buyQuantity"
-                                    step="1" name="removeCounter" (change)="productService.quantityCounterUpdated($event, item.key); calculateSubtotal()"/>
-                                    {{productService.getProduct(item.key).buyQuantity}}
+                                <input [(ngModel)]="item.quantity" id="quantity-counter" type="number"
+                                    min="1"
+                                    [(max)]="item.product.inventoryQuantity"
+                                    step="1" name="removeCounter" (change)="onChangeTotal()"/>
+                                    {{item.quantity}}
                             </td>
                             <td class="col-sm-1 col-md-1 text-center">
-                                <strong>${{productService.getProduct(item.key).price}}</strong></td>
+                                <strong>{{item.product.price}}</strong></td>
                             <td class="col-sm-1 col-md-1 text-center">
-                                <strong>${{productService.calculateItemSubtotal(productService.getProduct(item.key).price, item.value) | number:'1.2-2'}}</strong>
+                                <strong>{{item.product.price * item.quantity}}</strong>
                             </td>
                             <td class="col-sm-7 col-md-7">
                                 <button type="button" class="btn btn-danger"
-                                    (click)="departmentService.removeItem(item.key)">
+                                    (click)="cartService.removeItem(i)">
                                     <i class="fas fa-cart-arrow-down"></i> Remove
                                 </button></td>
                         </tr>
@@ -71,7 +71,7 @@
                                 <h5>Estimated shipping</h5>
                             </td>
                             <td class="text-right">
-                                <h5><strong>$6.94</strong></h5>
+                                <h5><strong>${{deliveryFee | number:'1.2-2'}}</strong></h5>
                             </td>
                         </tr>
                         <tr>
@@ -82,7 +82,7 @@
                                 <h3>Total</h3>
                             </td>
                             <td class="text-right">
-                                <h3><strong>$31.53</strong></h3>
+                                <h3><strong>${{total | number:'1.2-2'}}</strong></h3>
                             </td>
                         </tr>
                         <tr>

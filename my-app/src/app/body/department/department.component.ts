@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs';
 import { Product } from '../types/product';
 import { Department } from '../types/department';
 import { ProductService } from '../service/product.service';
+import { CartService } from '../cart/services/cart.service';
 
 @Component({
   selector: 'app-department',
@@ -24,7 +25,7 @@ export class DepartmentComponent implements OnInit {
   selectAddCartSubscription: Subscription;
   cartSubscripton: Subscription;
 
-  constructor(public departmentService: DepartmentService, public productService: ProductService) {
+  constructor(public departmentService: DepartmentService, public productService: ProductService, public cartService: CartService) {
     this.cart = departmentService.cart;
     this.selectedProduct = departmentService.selectedProduct;
     this.products = productService.products;
