@@ -89,9 +89,9 @@ export class PurchaseComponent implements OnInit {
 
   onConfirm() {
     this.invoice.shippingDate = this.shipDate;
-    const year = new Date().getFullYear;
-    const month = new Date().getMonth;
-    const date = new Date().getDate;
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const date = new Date().getDate();
     this.invoice.purchaseDate = year.toString() + '-' + month.toString() + '-' + date.toString();
     this.invoice.subTotal = this.subtotal;
     this.invoice.tax = this.tax;
