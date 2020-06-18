@@ -83,4 +83,7 @@ export class NavBarComponent implements OnInit {
   onInvoiceClick() {
     this.route.navigateByUrl('/invoices');
   }
+  onDriverClick() {
+    this.route.navigateByUrl('/driver');
+  }
 }

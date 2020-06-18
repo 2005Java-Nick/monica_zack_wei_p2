@@ -1,0 +1,45 @@
+
+<div class="table-container">
+    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                aria-controls="home" aria-selected="true" (click)="this.driverService.driverShiftToggle()">OnShift</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+                aria-controls="profile" aria-selected="false" (click)="this.driverService.driverShiftToggle()">OffShift</a>
+        </li>
+    </ul>
+    <div>
+    <h2>Shipping Assigments</h2>  
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Status</th>
+          <th>ID</th>
+          <th>Customer Name</th>
+          <th>Address</th>
+          <th>Contact No</th>
+          <th>Shipping Date</th>
+          <th>Customer Comments</th>
+          <th>Delivery Comments</th>
+         
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of this.driverService.driverOrders">
+          <td>{{item.status}}</td>
+          <td>{{item.id}}</td>
+          <td>{{item.customerAccount.firstname +" "+ item.customerAccount.lastname}}</td>
+          <td>{{item.customerAccount.Address}</td>
+          <td>{{item.customerAccount.city +" "+ item.customerAccount.state +" "+item.customerAccount.zip}}</td>
+          <td>{{item.customerAccount.phoneNumber}}</td>
+          <td>{{item.shippingDate}}</td>
+          <td>{{item.customerComments}}</td>
+          <td>{{item.deliveryComments}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

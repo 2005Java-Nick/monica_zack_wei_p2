@@ -57,7 +57,7 @@ export class DriverService {
 
   driverShiftToggle() {
     const token = new Token();
-    token.token = sessionStorage.getItem('Token')
+    token.token = sessionStorage.getItem('Token');
     this.http.put(environment.driverShiftToggleURL, token).subscribe(data => {
       console.log(data);
     });

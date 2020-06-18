@@ -11,6 +11,7 @@ import { MealkitsComponent } from './body/department/mealkits/mealkits.component
 import { ConfirmationComponent } from './body/purchase/confirmation/confirmation.component';
 import { InvoiceComponent } from './body/invoice/invoice.component';
 import { InvoiceviewComponent } from './body/invoiceview/invoiceview.component';
+import { DriverComponent } from './body/driver/driver.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'checkout', component: PurchaseComponent},
   { path: 'meal-kits', component: MealkitsComponent},
   { path: 'confirmation', component: ConfirmationComponent},
-  {path: 'invoices', component: InvoiceviewComponent}
+  {path: 'invoices', component: InvoiceviewComponent},
+  {path: 'driver', component: DriverComponent}
 ];
 
 @NgModule({

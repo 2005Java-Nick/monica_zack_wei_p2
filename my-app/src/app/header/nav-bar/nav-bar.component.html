@@ -41,6 +41,12 @@
                 ADMIN
             </a>            
         </div>
+        <div *ngIf="loginService.user.accountType.type === 'driver'">
+            <a class="navbar-brand" (click)="onDriverClick()">
+                <i class="fas fa-user-shield"></i>
+                Driver
+            </a>            
+        </div>
         <div>
             <a class="navbar-brand" (click)="onInvoiceClick()">
                 <i class="fas fa-user-shield"></i>

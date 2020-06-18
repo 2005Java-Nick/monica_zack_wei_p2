@@ -10,12 +10,13 @@ import { InvoiceComponent } from './invoice/invoice.component';
 import { MealkitsComponent } from './department/mealkits/mealkits.component';
 import { ConfirmationComponent } from './purchase/confirmation/confirmation.component';
 import { InvoiceviewComponent } from './invoiceview/invoiceview.component';
+import { DriverComponent } from './driver/driver.component';
 
 
 
 @NgModule({
   declarations: [BodyComponent, DepartmentComponent, AdminComponent, CartComponent,
-    PurchaseComponent, InvoiceComponent, MealkitsComponent, ConfirmationComponent, InvoiceviewComponent],
+    PurchaseComponent, InvoiceComponent, MealkitsComponent, ConfirmationComponent, InvoiceviewComponent, DriverComponent],
   imports: [
     CommonModule,
     FormsModule,
