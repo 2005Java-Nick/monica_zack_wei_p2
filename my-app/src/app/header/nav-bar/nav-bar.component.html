@@ -21,9 +21,9 @@
 
     <app-search-bar></app-search-bar>
 
-    <button type="button" class="btn" id="cart-btn" (click)="onCartClick()"><i
-        class="fas fa-shopping-cart"></i> Cart </button>
-        
+    <button type="button" class="btn" id="cart-btn" (click)="onCartClick()"><i class="fas fa-shopping-cart"></i> Cart
+    </button>
+
     <div *ngIf="!isLogin" class="user-btns">
         <a class="navbar-brand" (click)="onRegisterClick()">
             <i class="fas fa-user-plus"></i>
@@ -35,10 +35,12 @@
         </a>
     </div>
     <div *ngIf="isLogin" class="user-btns">
-        <a class="navbar-brand" (click)="onAdminClick()">
-            <i class="fas fa-user-shield"></i>
-            ADMIN
-        </a>
+        <div *ngIf="loginService.user.accountType.type === 'admin'">
+            <a class="navbar-brand" (click)="onAdminClick()">
+                <i class="fas fa-user-shield"></i>
+                ADMIN
+            </a>
+        </div>
         <a class="navbar-brand" (click)="loginService.resetLogin(); onHomeClick">
             <i class="fas fa-sign-out-alt"></i>
             Logout

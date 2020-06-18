@@ -11,6 +11,8 @@ import { UserAccount } from '../types/UserAccount';
 })
 export class LoginService{
 
+  user: UserAccount;
+
   isLogin: boolean;
 
   loginStatusChanged: Subject<boolean> = new Subject<boolean>();
@@ -44,7 +46,7 @@ export class LoginService{
             sessionStorage.setItem('Token', userToken.sessionToken);
             console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
-            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); }
+            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); this.user = userToken; }
           }
         );
       }
@@ -66,7 +68,7 @@ export class LoginService{
             sessionStorage.setItem('Token', userToken.sessionToken);
             console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
-            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); }
+            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); this.user = userToken; }
           }
         );
       }

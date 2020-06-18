@@ -5,14 +5,17 @@ import { DepartmentComponent } from './department/department.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
 import { CartComponent } from './cart/cart.component';
+import { PurchaseComponent } from './purchase/purchase.component';
+import { InvoiceComponent } from './invoice/invoice.component';
 
 
 
 @NgModule({
-  declarations: [BodyComponent, DepartmentComponent, AdminComponent, CartComponent],
+  declarations: [BodyComponent, DepartmentComponent, AdminComponent, CartComponent,
+    PurchaseComponent, InvoiceComponent],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
   ],
   exports: [
     BodyComponent

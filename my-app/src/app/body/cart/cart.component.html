@@ -39,12 +39,11 @@
                                     min="1"
                                     [(max)]="item.product.inventoryQuantity"
                                     step="1" name="removeCounter" (change)="onChangeTotal()"/>
-                                    {{item.quantity}}
                             </td>
                             <td class="col-sm-1 col-md-1 text-center">
                                 <strong>{{item.product.price}}</strong></td>
                             <td class="col-sm-1 col-md-1 text-center">
-                                <strong>{{item.product.price * item.quantity}}</strong>
+                                <strong>{{((item.product.price * 100) * item.quantity) / 100 | number:'1.2-2'}}</strong>
                             </td>
                             <td class="col-sm-7 col-md-7">
                                 <button type="button" class="btn btn-danger"
@@ -60,11 +59,22 @@
                                 <h5>Subtotal</h5>
                             </td>
                             <td class="text-right">
-                                <h5><strong>{{subtotal | number:'1.2-2'}}</strong></h5>
+                                <h5><strong>${{subtotal | number:'1.2-2'}}</strong></h5>
                             </td>
                         </tr>
                         <tr>
                             <td>   </td>
+                            <td>   </td>
+                            <td>   </td>
+                            <td>
+                                <h5>Tax</h5>
+                            </td>
+                            <td class="text-right">
+                                <h5><strong>${{tax | number:'1.2-2'}}</strong></h5>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Free shipping on all purchases greater than $50!</td>
                             <td>   </td>
                             <td>   </td>
                             <td>
@@ -93,7 +103,7 @@
                             <td> </td>
                             <td> </td>
                             <td>
-                                <button type="button" class="btn btn-success">
+                                <button type="button" class="btn btn-success" (click)="onClickPurchase()">
                                     <i class="fas fa-cash-register"></i> Checkout
                                 </button></td>
                         </tr>
