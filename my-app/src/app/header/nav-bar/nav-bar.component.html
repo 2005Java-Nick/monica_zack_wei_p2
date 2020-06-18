@@ -35,22 +35,22 @@
         </a>
     </div>
     <div *ngIf="isLogin" class="user-btns">
+        <div>
+            <a class="navbar-brand" (click)="onInvoiceClick()">
+                <i class="fas fa-file-invoice-dollar"></i>
+                View Invoices
+            </a>
+        </div>
+        <div *ngIf="loginService.user.accountType.type === 'driver'">
+            <a class="navbar-brand" (click)="onDriverClick()">
+                <i class="fas fa-truck"></i>
+                Driver
+            </a>            
+        </div>
         <div *ngIf="loginService.user.accountType.type === 'admin'">
             <a class="navbar-brand" (click)="onAdminClick()">
                 <i class="fas fa-user-shield"></i>
                 ADMIN
-            </a>            
-        </div>
-        <div *ngIf="loginService.user.accountType.type === 'driver'">
-            <a class="navbar-brand" (click)="onDriverClick()">
-                <i class="fas fa-user-shield"></i>
-                Driver
-            </a>            
-        </div>
-        <div>
-            <a class="navbar-brand" (click)="onInvoiceClick()">
-                <i class="fas fa-user-shield"></i>
-                View Invoices
             </a>
         </div>
         <a class="navbar-brand" (click)="loginService.resetLogin(); onHomeClick">

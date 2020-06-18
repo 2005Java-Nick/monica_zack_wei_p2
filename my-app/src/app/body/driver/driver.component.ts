@@ -9,6 +9,8 @@ import { DriverService } from '../service/driver.service';
 })
 export class DriverComponent implements OnInit {
 
+  statuses = ['Pending', 'In Progress', 'Completed', 'Delayed', 'Unable to Complete'];
+
   constructor(public driverService: DriverService) { }
 
   ngOnInit(): void {

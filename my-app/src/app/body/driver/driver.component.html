@@ -1,4 +1,6 @@
-
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="table-container">
     <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
         <li class="nav-item">
@@ -24,20 +26,27 @@
           <th>Shipping Date</th>
           <th>Customer Comments</th>
           <th>Delivery Comments</th>
-         
+          <th></th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let item of this.driverService.driverOrders">
-          <td>{{item.status}}</td>
+          <td>
+            <div class="col-auto my-2">
+                <label class="mr-sm-8" for="inlineFormCustomSelect">Status</label>
+                <select [(ngModel)]="item.status" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+                  <option  *ngFor="let status of statuses" [value]="status" selected>{{status}}</option>
+                </select>
+              </div>
+          </td>
           <td>{{item.id}}</td>
-          <td>{{item.customerAccount.firstname +" "+ item.customerAccount.lastname}}</td>
-          <td>{{item.customerAccount.Address}</td>
-          <td>{{item.customerAccount.city +" "+ item.customerAccount.state +" "+item.customerAccount.zip}}</td>
-          <td>{{item.customerAccount.phoneNumber}}</td>
+          <td>{{item.customer.firstname +" "+ item.customer.lastname}}</td>
+          <td>{{item.customer.address}}<br>{{item.customer.city +" "+ item.customer.state +" "+item.customer.zip}}</td>
+          <td>{{item.customer.phoneNumber}}</td>
           <td>{{item.shippingDate}}</td>
-          <td>{{item.customerComments}}</td>
-          <td>{{item.deliveryComments}}</td>
+          <td>{{item.customerComments}}{{item.deliveryComments}}</td>
+          <td><textarea [(ngModel)]="item.deliveryComments" name="deliveryComments" rows="3" columns="7"></textarea></td>
+          <td><button (click)="this.driverService.updateDriverOrder(item)">update</button></td>
         </tr>
       </tbody>
     </table>

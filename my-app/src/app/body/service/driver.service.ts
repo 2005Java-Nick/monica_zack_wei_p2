@@ -39,6 +39,8 @@ export class DriverService {
   }
 
   updateDriverOrder(data: Invoice) {
+    console.log(data);
+    console.log(this.driverOrders);
     this.http.put(environment.driverURL, data).subscribe(data => {
       console.log(data);
     });
