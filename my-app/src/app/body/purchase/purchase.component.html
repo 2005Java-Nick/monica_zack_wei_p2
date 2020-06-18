@@ -206,7 +206,7 @@
                             </div>
                         </div> -->
                         <div class="col-md-6 mb-3">
-                            <label for="cardNumber">{{ paymentMethod | titlecase }} card number | titlecase</label>
+                            <label for="cardNumber">{{ paymentMethod | titlecase }} card number</label>
                             <input [(ngModel)]="cardNumber" name="cardNumber" type="text" class="form-control"
                                 (change)="validateCardNumber()" id="cardNumber" placeholder="" required>
                             <div *ngIf="!invalidCardNumber" class="col-md-20 mb-3 invalid-form-warning">
