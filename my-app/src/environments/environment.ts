@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  
   loginURL: 'http://localhost:8080/Project2/login',
   signupURL: 'http://localhost:8080/Project2/signup',
   productsURL: 'http://localhost:8080/Project2/products',
@@ -12,6 +13,18 @@ export const environment = {
   driverURL: 'http://localhost:8080/Project2/driver',
   driverShiftStatusURL: 'http://localhost:8080/Project2/driver/ShiftStatus',
   driverShiftToggleURL: 'http://localhost:8080/Project2/driver/ShiftToggle',
+
+  
+  /*
+  loginURL: 'http://weiwu.online:8080/OGSS/OGSS/login',
+  signupURL: 'http://weiwu.online:8080/OGSS/signup',
+  productsURL: 'http://weiwu.online:8080/OGSS/OGSS/products',
+  productsDeleteURL: 'http://weiwu.online:8080/OGSS/products/delete',
+  invoicesURL: 'http://weiwu.online:8080/OGSS/invoices',
+  driverURL: 'http://weiwu.online:8080/OGSS/driver',
+  driverShiftStatusURL: 'http://weiwu.online:8080/OGSS/ShiftStatus',
+  driverShiftToggleURL: 'http://weiwu.online:8080/OGSS/ShiftToggle',
+  */
 };
 
 /*
