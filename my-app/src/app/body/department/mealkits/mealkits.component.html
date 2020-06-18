@@ -2,17 +2,12 @@
     integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 <div class="background-img">
     <div class="container product-display">
-        <div *ngIf="selectedDepartment.name !== ''; else browseBlock" class="product-heading animate__animated animate__zoomIn">
-            <h1 id="product-header">{{selectedDepartment.name}}</h1>
+        <div class="product-heading animate__animated animate__backInUp">
+            <h1 id="product-header">Meal Kits</h1>
         </div>
-        <ng-template #browseBlock>
-            <div class="product-heading animate__animated animate__zoomIn">
-                <h1 id="product-header">All Products</h1>
-            </div>
-        </ng-template>
         <div class="row">
             <div *ngFor="let product of products">
-                <div *ngIf="product.tags.search(selectedDepartment.name) >= 0">
+                <div *ngIf="product.tags.search('Meal Kits') >= 0">
                     <div *ngIf="product.inventoryQuantity > 0; else soldOutBlock" class="card">
                         <div class="image-container">
                             <img [src]="product.imageUrl" [alt]="product.productName">
@@ -21,7 +16,7 @@
                         <p class="price">${{product.price}} ea</p>
                         <p id="description">{{product.discription}}</p>
                         <input [(ngModel)]="product.buyQuantity" id="quantity-counter" type="number" [placeholder]="default"
-                            min="1" [max]="product.inventoryQuantity" step="1" />
+                            min="1" max="100" step="1" />
                         <p><button class="btn" (click)="cartService.addItem(product, product.buyQuantity)">
                                 <i class="fas fa-cart-plus"></i> Add
                                 To Cart </button></p>

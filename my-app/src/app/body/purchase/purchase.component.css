@@ -1,3 +1,52 @@
+#log-in-heading {
+  font-size: 1rem;
+  color: #103f12;
+}
+
+.btn-group:hover {
+  box-shadow: -1px 1px 1px 2px #888888;
+  transform: scale(1.1);
+}
+
+#register-btn {
+  width: 6rem;
+  height: 5rem;
+  background-color: rgb(48, 116, 48);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#register-btn:hover {
+  background-color: rgb(73, 150, 73);
+}
+
+#login-btn {
+  width: 6rem;
+  height: 5rem;
+  background-color: rgb(65, 141, 122);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#login-btn:hover {
+  background-color: rgb(90, 172, 151);
+}
+
+#shop-btn {
+  width: 6rem;
+  height: 5rem;
+  background-color: rgb(68, 103, 184);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#shop-btn {
+  background-color: rgb(93, 129, 211);
+}
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -25,4 +74,21 @@
   
   .ng-invalid:not(form)  {
     border-left: 5px solid #a94442; /* red */
+  }
+
+  .invalid-form-warning {
+    font-size: medium;
+    color: #a94442;
+  }
+
+  .not-logged-in {
+    width: 60%;
+    margin: 5% 20% 23% 20%;
+    padding: 3rem;
+    background-color: rgb(221, 228, 230);
+    border-radius: 30%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }

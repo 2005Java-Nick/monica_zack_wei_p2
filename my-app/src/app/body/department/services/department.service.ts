@@ -17,8 +17,9 @@ export class DepartmentService {
     new Department(1, 'Fresh Produce'),
     new Department(2, 'Bakery'),
     new Department(3, 'Beverages'),
-    new Department(4, 'Poultry'),
-    new Department(5, 'Meal Kit')
+    new Department(4, 'Meat and Seafood'),
+    new Department(5, 'Herbs and Spices'),
+    new Department(6, 'Meal Kits')
   ];
 
 
@@ -50,11 +51,15 @@ export class DepartmentService {
   }
 
   onDepartmentClick(department) {
-    if(department.name === 'Browse All Departments') {
-      department = new Department(0, '');
+    if (department.name === 'Meal Kits') {
+      this.route.navigateByUrl('/meal-kits');
+    } else {
+      if (department.name === 'Browse All Departments') {
+        department = new Department(0, '');
+      }
+      this.selectedDepartmentUpdated.next(department);
+      this.route.navigateByUrl('/department');
     }
-    this.selectedDepartmentUpdated.next(department);
-    this.route.navigateByUrl('/department');
   }
 
   onAddCartClick(product, value) {

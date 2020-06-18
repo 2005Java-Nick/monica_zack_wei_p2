@@ -4,6 +4,8 @@ import { AdminService } from '../service/admin.service';
 import { Token } from 'src/app/login/types/Token';
 import { Product } from '../types/product';
 import { ProductService } from '../service/product.service';
+import { LoginService } from 'src/app/login/services/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,7 +23,11 @@ export class AdminComponent implements OnInit {
 
   currentProducts: Product[];
 
-  constructor(private adminService: AdminService, private productServices: ProductService) {
+  constructor(private adminService: AdminService, private productServices: ProductService,
+              private loginService: LoginService, private route: Router) {
+    if (!loginService.isLogin) {
+      route.navigateByUrl('/home');
+    }
     this.currentProducts = this.productServices.products;
     this.productServices.productListUpdated.subscribe((value) => {
       this.currentProducts = value;

@@ -1,12 +1,12 @@
 <div id="master-container">
-    <div class="empty-container animate__animated animate__jackInTheBox" *ngIf="cartEmpty()">
+    <div class="empty-container animate__animated animate__zoomInDown" *ngIf="cartEmpty()">
         <h1>Your cart is currently empty!</h1>
         <br>
         <div><button type="button" class="btn btn-primary" (click)="onClickContinueShopping()">
                 <i class="fas fa-shopping-cart"></i> Continue Shopping
             </button></div>
     </div>
-    <div class="cart-container animate__animated animate__jackInTheBox" *ngIf="!cartEmpty()">
+    <div class="cart-container animate__animated animate__zoomInDown" *ngIf="!cartEmpty()">
         <div class="row">
             <div class="col-sm-18 col-md-16 col-md-offset-1" id="cart-form">
                 <table class="table table-hover">
