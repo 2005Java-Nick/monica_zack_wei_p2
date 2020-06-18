@@ -66,6 +66,9 @@ export class PurchaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if (!this.loginService.isLogin) {
+      this.route.navigateByUrl('/home');
+    }
     this.onChangeTotal();
     this.invoice = new Invoice();
   }
@@ -97,9 +100,9 @@ export class PurchaseComponent implements OnInit {
     if ((this.shipDate !== '') && (this.cardNumber !== '') && (this.cardNumber.length >= 10)) {
       this.clicked = true;
       this.invoice.shippingDate = this.shipDate;
-      const year = new Date().getFullYear;
-      const month = new Date().getMonth;
-      const date = new Date().getDate;
+      const year = new Date().getFullYear();
+      const month = new Date().getMonth();
+      const date = new Date().getDate();
       this.invoice.purchaseDate = year.toString() + '-' + month.toString() + '-' + date.toString();
       this.invoice.subTotal = this.subtotal;
       this.invoice.tax = this.tax;
@@ -115,7 +118,9 @@ export class PurchaseComponent implements OnInit {
         this.orderConfirmation = value;
         console.log(this.orderConfirmation);
         if (this.orderConfirmation) {
-          this.route.navigateByUrl('');
+          this.route.navigateByUrl('/confirmation');
+          this.cartService.cart = [];
+          this.productService.getProducts();
         }
       });
     } else {

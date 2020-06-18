@@ -80,4 +80,7 @@ export class NavBarComponent implements OnInit {
   onCartClick() {
     this.route.navigateByUrl('/cart');
   }
+  onInvoiceClick() {
+    this.route.navigateByUrl('/invoices');
+  }
 }

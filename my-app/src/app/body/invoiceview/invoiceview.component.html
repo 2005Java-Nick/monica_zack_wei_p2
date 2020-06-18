@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>Invoices</h2>
+    <p>Below is the list of purchases:</p>            
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Shipping Date</th>
+          <th>Purchase Date</th>
+          <th>Status</th>
+          <th>Final Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of this.ordersService.invoices">
+          <td>{{item.id}}</td>
+          <td>{{item.shippingDate}}</td>
+          <td>{{item.purchaseDate}}</td>
+          <td>{{item.status}}</td>
+          <td>{{item.finalPrice}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

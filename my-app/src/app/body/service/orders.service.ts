@@ -9,6 +9,8 @@ import { Subject, Observable } from 'rxjs';
 })
 export class OrdersService {
 
+  orderConfirmation: boolean;
+
   invoices: Array<Invoice>;
 
   invoicesUpdated: Subject<Array<Invoice>> = new Subject<Array<Invoice>>();
@@ -40,8 +42,8 @@ export class OrdersService {
         this.sendOrder(invoice).subscribe(
           (data: boolean) => {
             console.log(data);
-            if (data == null || data === false) { obser.next(false); }
-            if (data != null || data === true) {obser.next(true); }
+            if (data == null || data === false) { obser.next(false); this.orderConfirmation = false; }
+            if (data != null || data === true) {obser.next(true); this.orderConfirmation = true; }
           }
         );
       }

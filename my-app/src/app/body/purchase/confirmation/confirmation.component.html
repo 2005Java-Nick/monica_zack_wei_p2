@@ -1,0 +1,16 @@
+<div id="master-container">
+    <div *ngIf="ordersService.orderConfirmation" class="confirm-container animate__animated animate__zoomInDown">
+        <h1>Your order was successful!</h1>
+        <br>
+        <div><button type="button" class="btn btn-primary" (click)="onClickContinueShopping()">
+                <i class="fas fa-shopping-cart"></i> Continue Shopping
+            </button></div>
+    </div>
+    <div *ngIf="!ordersService.orderConfirmation" class="failure-container animate__animated animate__zoomInDown">
+        <h1>Sorry, our system is currently down and your order could not go through. Please try again later.</h1>
+        <br>
+        <div><button type="button" class="btn btn-primary" (click)="onClickContinueShopping()">
+                <i class="fas fa-shopping-cart"></i> Continue Shopping
+            </button></div>
+    </div>
+</div>

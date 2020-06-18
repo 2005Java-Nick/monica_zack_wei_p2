@@ -8,6 +8,9 @@ import { AdminComponent } from './body/admin/admin.component';
 import { CartComponent } from './body/cart/cart.component';
 import { PurchaseComponent } from './body/purchase/purchase.component';
 import { MealkitsComponent } from './body/department/mealkits/mealkits.component';
+import { ConfirmationComponent } from './body/purchase/confirmation/confirmation.component';
+import { InvoiceComponent } from './body/invoice/invoice.component';
+import { InvoiceviewComponent } from './body/invoiceview/invoiceview.component';
 
 
 const routes: Routes = [
@@ -19,7 +22,9 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent},
   { path: 'cart', component: CartComponent},
   { path: 'checkout', component: PurchaseComponent},
-  { path: 'meal-kits', component: MealkitsComponent}
+  { path: 'meal-kits', component: MealkitsComponent},
+  { path: 'confirmation', component: ConfirmationComponent},
+  {path: 'invoices', component: InvoiceviewComponent}
 ];
 
 @NgModule({

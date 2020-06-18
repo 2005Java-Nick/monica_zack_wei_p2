@@ -15,7 +15,8 @@ export class InvoiceComponent implements OnInit {
   selectAddCartSubscription: any;
   cartSubscripton: any;
 
-  constructor(public productService: ProductService, private route: Router, public cartService: CartService, private departmentService: DepartmentService) {
+  constructor(public productService: ProductService, private route: Router, public cartService: CartService,
+              private departmentService: DepartmentService) {
     this.cart = departmentService.cart;
     this.selectedProduct = departmentService.selectedProduct;
     this.selectAddCartSubscription = departmentService.selectAddCartUpdated.subscribe((value) => {

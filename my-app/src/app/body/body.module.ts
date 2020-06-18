@@ -8,12 +8,14 @@ import { CartComponent } from './cart/cart.component';
 import { PurchaseComponent } from './purchase/purchase.component';
 import { InvoiceComponent } from './invoice/invoice.component';
 import { MealkitsComponent } from './department/mealkits/mealkits.component';
+import { ConfirmationComponent } from './purchase/confirmation/confirmation.component';
+import { InvoiceviewComponent } from './invoiceview/invoiceview.component';
 
 
 
 @NgModule({
   declarations: [BodyComponent, DepartmentComponent, AdminComponent, CartComponent,
-    PurchaseComponent, InvoiceComponent, MealkitsComponent],
+    PurchaseComponent, InvoiceComponent, MealkitsComponent, ConfirmationComponent, InvoiceviewComponent],
   imports: [
     CommonModule,
     FormsModule,
