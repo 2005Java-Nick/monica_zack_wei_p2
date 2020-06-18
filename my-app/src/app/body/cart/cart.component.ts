@@ -14,6 +14,7 @@ import { CartService } from './services/cart.service';
 export class CartComponent implements OnInit {
 
   subtotal: number;
+  tax: number;
   deliveryFee: number;
   total: number;
   selectedProduct: Product;
@@ -67,13 +68,23 @@ export class CartComponent implements OnInit {
   }
 
 
-  
+
   onChangeTotal() {
     this.subtotal = 0;
-  for (const item of this.cartService.cart) {
-    this.subtotal += item.quantity * item.product.price;
+    for (const item of this.cartService.cart) {
+      this.subtotal += item.quantity * item.product.price;
     }
-    this.deliveryFee = 6.44;
-    this.total = this.subtotal + this.deliveryFee;
-}
+    const tax = (((this.subtotal * 100) * 0.05) * 100) / 10000;
+    this.tax = tax;
+    if (this.subtotal >= 50) {
+      this.deliveryFee = 0;
+    } else {
+      this.deliveryFee = 6.44;
+    }
+    this.total = this.subtotal + this.deliveryFee + tax;
+  }
+
+  onClickPurchase() {
+    this.route.navigateByUrl('/checkout');
+  }
 }

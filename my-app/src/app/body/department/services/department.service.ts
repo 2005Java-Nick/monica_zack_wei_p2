@@ -13,7 +13,7 @@ export class DepartmentService {
   products: Array<Product>;
 
   departments: Array<Department> = [
-    new Department(0, 'Browse'),
+    new Department(0, 'Browse All Departments'),
     new Department(1, 'Fresh Produce'),
     new Department(2, 'Bakery'),
     new Department(3, 'Beverages'),
@@ -21,7 +21,7 @@ export class DepartmentService {
     new Department(5, 'Meal Kit')
   ];
 
-  
+
   cart: Map<number, number>;
 
   selectedDepartment: Department = this.departments[0];
@@ -50,6 +50,9 @@ export class DepartmentService {
   }
 
   onDepartmentClick(department) {
+    if(department.name === 'Browse All Departments') {
+      department = new Department(0, '');
+    }
     this.selectedDepartmentUpdated.next(department);
     this.route.navigateByUrl('/department');
   }
