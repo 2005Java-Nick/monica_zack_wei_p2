@@ -16,17 +16,20 @@ import { OrdersService } from '../service/orders.service';
 })
 export class PurchaseComponent implements OnInit {
 
-  invoice: Invoice;
+  clicked: boolean;
+  invalidForm: boolean;
+  invalidDate: boolean;
+  invalidCardNumber: boolean;
 
-  states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida',
+  /* states = ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware', 'Florida',
     'Georgia', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
     'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana', 'Nebraska', 'Nevada',
     'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota', 'Ohio', 'Oklahoma',
     'Oregan', 'Pennsylvania', 'Rhode Island', 'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont',
-    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+    'Virginia', 'Washington', 'West Virginia', 'Wisconsin', 'Wyoming']; */
 
-  paymentMethods = ['Credit Card', 'Debit Card'];
 
+  invoice: Invoice;
   subtotal: number;
   tax: number;
   deliveryFee: number;
@@ -48,7 +51,10 @@ export class PurchaseComponent implements OnInit {
 
   constructor(public departmentService: DepartmentService, public productService: ProductService, private route: Router,
               public cartService: CartService, public loginService: LoginService, private ordersService: OrdersService) {
-    /* this.invoice.cardNumber = ''; */
+    this.clicked = false;
+    this.invalidForm = false;
+    this.invalidDate = false;
+    this.invalidCardNumber = false;
     this.cart = departmentService.cart;
     this.selectedProduct = departmentService.selectedProduct;
     this.selectAddCartSubscription = departmentService.selectAddCartUpdated.subscribe((value) => {
@@ -88,26 +94,43 @@ export class PurchaseComponent implements OnInit {
   }
 
   onConfirm() {
-    this.invoice.shippingDate = this.shipDate;
-    const year = new Date().getFullYear();
-    const month = new Date().getMonth();
-    const date = new Date().getDate();
-    this.invoice.purchaseDate = year.toString() + '-' + month.toString() + '-' + date.toString();
-    this.invoice.subTotal = this.subtotal;
-    this.invoice.tax = this.tax;
-    this.invoice.deliveryCharge = this.deliveryFee;
-    this.invoice.finalPrice = this.total;
-    this.invoice.status = 'pending';
-    this.invoice.customerComments = this.customerComments;
-    this.invoice.paymentMethod = this.paymentMethod;
-    this.invoice.cardNumber = this.cardNumber;
-    this.invoice.customer = this.loginService.user;
-    this.invoice.itemList = this.cartService.cart;
-    console.log(this.invoice);
-    this.ordersService.submitOrder(this.invoice).subscribe((value) => {
-      this.orderConfirmation = value;
-      console.log(this.orderConfirmation);
-    });
+    if ((this.shipDate !== '') && (this.cardNumber !== '') && (this.cardNumber.length >= 10)) {
+      this.clicked = true;
+      this.invoice.shippingDate = this.shipDate;
+      const year = new Date().getFullYear;
+      const month = new Date().getMonth;
+      const date = new Date().getDate;
+      this.invoice.purchaseDate = year.toString() + '-' + month.toString() + '-' + date.toString();
+      this.invoice.subTotal = this.subtotal;
+      this.invoice.tax = this.tax;
+      this.invoice.deliveryCharge = this.deliveryFee;
+      this.invoice.finalPrice = this.total;
+      this.invoice.status = 'pending';
+      this.invoice.customerComments = this.customerComments;
+      this.invoice.paymentMethod = this.paymentMethod;
+      this.invoice.cardNumber = this.cardNumber;
+      this.invoice.customer = this.loginService.user;
+      this.invoice.itemList = this.cartService.cart;
+      this.ordersService.submitOrder(this.invoice).subscribe((value) => {
+        this.orderConfirmation = value;
+        console.log(this.orderConfirmation);
+        if (this.orderConfirmation) {
+          this.route.navigateByUrl('');
+        }
+      });
+    } else {
+      this.invalidForm = true;
+      this.validateShipDate();
+      this.validateCardNumber();
+    }
+  }
+
+  onClickRegister() {
+    this.route.navigateByUrl('/register');
+  }
+
+  onClickLogIn() {
+    this.route.navigateByUrl('/login');
   }
 
   onClickContinueShopping() {
@@ -133,5 +156,19 @@ export class PurchaseComponent implements OnInit {
 
   print(item) {
     console.log('Cart item:' + item);
+  }
+
+  validateShipDate() {
+    console.log(this.shipDate);
+    if (this.shipDate !== '') {
+      this.invalidDate = true;
+    }
+  }
+
+  validateCardNumber() {
+    console.log(this.cardNumber);
+    if (this.cardNumber.length < 10) {
+      this.invalidCardNumber = true;
+    }
   }
 }

@@ -35,8 +35,9 @@ a{
 
 .btn-dropdown:hover {
     color: black;
-    background-color: rgb(53, 204, 66);
+    background-color: rgb(32, 161, 43);
     cursor: pointer;
+    transform: scale(1.05);
 }
 
 #cart-btn {
@@ -47,8 +48,9 @@ a{
 
 #cart-btn:hover {
     color: black;
-    background-color: rgb(90, 148, 216);
+    background-color: rgb(59, 117, 184);
     cursor: pointer;
+    transform: scale(1.1);
 }
 
 .user-btns {

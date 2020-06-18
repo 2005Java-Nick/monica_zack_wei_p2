@@ -1,4 +1,27 @@
-<body class="bg-light">
+<div *ngIf="!loginService.isLogin" class="not-logged-in animate__animated animate__jackInTheBox">
+    <div id="log-in-heading">
+        <strong>You must be logged in to make a purchase.</strong>
+    </div>
+    <br>
+    <div>
+        <table class="table table-hover">
+            <td>
+                <button type="button" class="btn btn-primary btn-group" id="register-btn" (click)="onClickRegister()"><i
+                        class="fas fa-user-plus"></i>Register</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-group" id="login-btn" (click)="onClickLogIn()"><i
+                        class="fas fa-sign-in-alt"></i>Login</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-primary btn-group" id="shop-btn" (click)="onClickContinueShopping()"><i
+                        class="fas fa-shopping-cart"></i>Continue Shopping</button>
+            </td>
+        </table>
+    </div>
+</div>
+
+<body *ngIf="loginService.isLogin" class="bg-light">
     <div class="container">
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="72"
@@ -138,7 +161,10 @@
                         <div class="col-md-6 mb-4">
                             <label for="ship-date">Delivery Date </label>
                             <input [(ngModel)]="shipDate" type="date" class="form-control" id="ship-date" placeholder=""
-                                name="shipDate" required>
+                                name="shipDate" (change)="validateShipDate()" required>
+                        </div>
+                        <div *ngIf="invalidDate">
+                            You must enter a delivery date for your order.
                         </div>
                     </div>
                     <div class="col-md-20 mb-3">
@@ -146,7 +172,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text">Comments </span>
                             </div>
-                            <textarea [(ngModel)]="customerComments" name="customerComments" class="form-control" aria-label="Comments"
+                            <textarea [(ngModel)]="customerComments" name="customerComments" class="form-control"
+                                aria-label="Comments"
                                 placeholder="Please let us know if you have any additional instructions or concerns regarding your order!"></textarea>
                         </div>
                     </div>
@@ -159,14 +186,12 @@
                         <label for="paymentMethods">Payment Method: </label>
                         <div class="custom-control custom-radio">
                             <input [(ngModel)]="paymentMethod" id="credit" name="paymentMethods" type="radio"
-                                (change)="choose($event)" class="custom-control-input" value="credit"
-                                required>
+                                (change)="choose($event)" class="custom-control-input" value="credit" checked required>
                             <label class="custom-control-label" for="credit">Credit Card</label>
                         </div>
                         <div class="custom-control custom-radio">
                             <input [(ngModel)]="paymentMethod" id="debit" name="paymentMethods" type="radio"
-                                (change)="choose($event)" class="custom-control-input" value="debit"
-                                required>
+                                (change)="choose($event)" class="custom-control-input" value="debit" required>
                             <label class="custom-control-label" for="debit">Debit Card</label>
                         </div>
                     </div>
@@ -181,8 +206,12 @@
                             </div>
                         </div> -->
                         <div class="col-md-6 mb-3">
-                            <label for="cardNumber">Credit card number</label>
-                            <input [(ngModel)]="cardNumber" name="cardNumber" type="text" class="form-control" id="cardNumber" placeholder="" required>
+                            <label for="cardNumber">{{ paymentMethod | titlecase }} card number</label>
+                            <input [(ngModel)]="cardNumber" name="cardNumber" type="text" class="form-control"
+                                (change)="validateCardNumber()" id="cardNumber" placeholder="" required>
+                            <div *ngIf="!invalidCardNumber" class="col-md-20 mb-3 invalid-form-warning">
+                                You must enter a {{paymentMethod}} card number.
+                            </div>
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -202,7 +231,13 @@
                         </div>
                     </div> -->
                     <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit" (click)="onConfirm()">Confirm</button>
+                    <button class="btn btn-primary btn-lg btn-block" type="submit" [disabled]="clicked"
+                        (click)="onConfirm()">Confirm</button>
+                    <div *ngIf="invalidForm">
+                        <div class="invalid-form-warning">
+                            <p>Please fill in all required fields before submitting.</p>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>

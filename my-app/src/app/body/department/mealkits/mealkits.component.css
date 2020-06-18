@@ -1,8 +1,15 @@
 .background-img {
-    background-image: url(../../../assets/images/retina_wood.png);
-    background-repeat: repeat;
-    padding: 2rem;
     min-height: 100vh;
+    min-width: 100vw;
+    padding: 2vh;
+    margin: 0px;
+    background-image: url(../../../../assets/images/mealkit-background.jpg);
+    background-position: center;
+    background-attachment: fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
 }
 
 .product-display {
@@ -28,7 +35,7 @@
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-    width: 250px;
+    width: 40%;
     margin: 1.5vmax;
     text-align: center;
     font-family: arial;
@@ -38,14 +45,12 @@
 
 .card:hover {
     opacity: 1.0;
-    transform: scale(1.01);
 }
 
 .image-container {
     border-radius: 6%;
     float: left;
-    width: 90%;
-    height: 150px;
+    width: 60%;
     object-fit: cover;
     overflow: hidden;
     border: 2px solid rgb(61, 168, 61);
@@ -88,7 +93,7 @@
 }
 
 #description {
-    height: 4rem;
+    height: 20%;
     padding: 1rem;
 }
 
