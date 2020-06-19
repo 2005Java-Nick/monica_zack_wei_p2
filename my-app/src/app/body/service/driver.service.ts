@@ -16,6 +16,9 @@ export class DriverService {
 
   driverShiftStatus: Driver;
   driverShiftStatusUpdates: Subject<Driver> = new Subject<Driver>();
+
+  onShift: boolean;
+  onShiftUpdates: Subject<boolean> = new Subject<boolean>();
   constructor(private http: HttpClient) {
     this.driverOrdersUpdated.subscribe((value) => {
       this.driverOrders = value;
@@ -23,6 +26,10 @@ export class DriverService {
 
     this.driverShiftStatusUpdates.subscribe((value) => {
       this.driverShiftStatus = value;
+    });
+
+    this.onShiftUpdates.subscribe((value) => {
+      this.onShift = value;
     });
   }
 
@@ -49,19 +56,21 @@ export class DriverService {
   getDriverShiftStatus() {
     let params = new HttpParams();
     params = params.append('Token', sessionStorage.getItem('Token'));
-    this.http.get<any>(environment.driverShiftStatusURL, { params: params }).subscribe((value) => {
+    this.http.get<Driver>(environment.driverShiftStatusURL, { params: params }).subscribe((value) => {
       console.log(value);
       this.driverShiftStatus = value;
       console.log(this.driverShiftStatus);
       this.driverShiftStatusUpdates.next(value);
+      this.onShiftUpdates.next(value.onShift);
     });
   }
 
   driverShiftToggle() {
     const token = new Token();
     token.token = sessionStorage.getItem('Token');
-    this.http.put(environment.driverShiftToggleURL, token).subscribe(data => {
+    this.http.put<boolean>(environment.driverShiftToggleURL, token).subscribe(data => {
       console.log(data);
+      this.onShiftUpdates.next(data);
     });
   }
 }

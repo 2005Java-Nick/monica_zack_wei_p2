@@ -15,6 +15,7 @@ export class DriverComponent implements OnInit {
 
   ngOnInit(): void {
     this.driverService.getCustomerInvoices();
+    this.driverService.getDriverShiftStatus();
   }
 
 }
