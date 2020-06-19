@@ -6,6 +6,6 @@ export const environment = {
   productsDeleteURL: 'http://weiwu.online:8080/OGSS/products/delete',
   invoicesURL: 'http://weiwu.online:8080/OGSS/invoices',
   driverURL: 'http://weiwu.online:8080/OGSS/driver',
-  driverShiftStatusURL: 'http://weiwu.online:8080/OGSS/ShiftStatus',
-  driverShiftToggleURL: 'http://weiwu.online:8080/OGSS/ShiftToggle',
+  driverShiftStatusURL: 'http://weiwu.online:8080/OGSS/driver/ShiftStatus',
+  driverShiftToggleURL: 'http://weiwu.online:8080/OGSS/driver/ShiftToggle',
 };
