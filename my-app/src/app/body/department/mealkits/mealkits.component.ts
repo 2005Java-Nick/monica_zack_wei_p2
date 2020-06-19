@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { Department } from '../../types/department';
 import { DepartmentService } from '../services/department.service';
 import { ProductService } from '../../service/product.service';
+import { Mealkit } from '../../types/mealkit';
 
 @Component({
   selector: 'app-mealkits',
@@ -12,6 +13,8 @@ import { ProductService } from '../../service/product.service';
   styleUrls: ['./mealkits.component.css']
 })
 export class MealkitsComponent implements OnInit {
+
+  mealkit: Mealkit;
 
   default = 0;
   products: Array<Product>;

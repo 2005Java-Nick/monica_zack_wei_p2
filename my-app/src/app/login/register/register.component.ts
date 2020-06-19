@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
 
   user = new UserAccount();
 
+  failedRegister = false;
+
   constructor(private loginService: LoginService, private route: Router) { }
 
   makeTypeCustomer(): void {
@@ -38,6 +40,8 @@ export class RegisterComponent implements OnInit {
     this.loginService.sendSignUp(this.user).pipe(first()).subscribe(data => {
       if (data === true) {
         this.route.navigateByUrl('/home');
+      } else {
+        this.failedRegister = true;
       }
     });
   }

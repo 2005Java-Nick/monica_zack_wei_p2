@@ -82,6 +82,8 @@
 
                             <input (click)="onSignUp()" type="submit" class="btnRegister" value="Register" />
                         </div>
+                        <div *ngIf="failedRegister" id="register-warn"><strong>Username is already taken. Please choose a
+                            different username.</strong></div>
                     </div>
                 </div>
                 <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -138,6 +140,8 @@
                             </div>
                             <input (click)="onSignUp()" type="submit" class="btnRegister" value="Register" />
                         </div>
+                        <div *ngIf="failedRegister" id="register-warn"><strong>Username is already taken. Please choose a
+                            different username.</strong></div>
                     </div>
                 </div>
             </div>

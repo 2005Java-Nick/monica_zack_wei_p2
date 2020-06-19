@@ -45,7 +45,7 @@ export class LoginService{
             console.log(userToken);
             if (userToken == null) { obser.next(false); }
             if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); this.user = userToken;
-              sessionStorage.setItem('Token', userToken.sessionToken);
+                                    sessionStorage.setItem('Token', userToken.sessionToken);
             }
           }
         );
@@ -64,11 +64,10 @@ export class LoginService{
       (obser) => {
         this.authenticateSignUp(data).subscribe(
           (userToken: UserAccount) => {
-            console.log(userToken.accountType.type);
-            sessionStorage.setItem('Token', userToken.sessionToken);
-            console.log(sessionStorage.getItem('Token'));
+            console.log(userToken);
             if (userToken == null) { obser.next(false); }
-            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); this.user = userToken; }
+            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true);
+                                    this.user = userToken; sessionStorage.setItem('Token', userToken.sessionToken); }
           }
         );
       }

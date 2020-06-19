@@ -98,3 +98,12 @@
     margin-bottom: -15%;
     color: #495057;
 }
+
+#register-warn {
+    font-size: 12px;
+    color: crimson;
+    background-color: white;
+    margin-left: 10px;
+    border-radius: 6%;
+    padding: 5px;
+}
