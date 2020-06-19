@@ -72,7 +72,7 @@ export class CartComponent implements OnInit {
   onChangeTotal() {
     this.subtotal = 0;
     for (const item of this.cartService.cart) {
-      this.subtotal += item.quantity * item.product.price;
+      this.subtotal += (item.quantity * (item.product.price * 100)) / 100;
     }
     const tax = (((this.subtotal * 100) * 0.05) * 100) / 10000;
     this.tax = tax;

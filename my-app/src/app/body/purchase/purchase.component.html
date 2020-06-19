@@ -186,7 +186,7 @@
                         <label for="paymentMethods">Payment Method: </label>
                         <div class="custom-control custom-radio">
                             <input [(ngModel)]="paymentMethod" id="credit" name="paymentMethods" type="radio"
-                                (change)="choose($event)" class="custom-control-input" value="credit" checked required>
+                                (change)="choose($event)" class="custom-control-input" value="credit" required>
                             <label class="custom-control-label" for="credit">Credit Card</label>
                         </div>
                         <div class="custom-control custom-radio">
@@ -208,7 +208,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="cardNumber">Card Number</label>
                             <input [(ngModel)]="cardNumber" name="cardNumber" type="text" class="form-control"
-                                (change)="validateCardNumber()" id="cardNumber" placeholder="" required>
+                                (change)="validateCardNumber()" id="cardNumber" placeholder="" required pattern="[0-9]{10,16}">
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -239,13 +239,13 @@
             </div>
         </div>
 
-        <footer class="my-5 pt-5 text-muted text-center text-small">
+        <!-- <footer class="my-5 pt-5 text-muted text-center text-small">
             <p class="mb-1">&copy; 2017-2020 Company Name</p>
             <ul class="list-inline">
                 <li class="list-inline-item"><a href="#">Privacy</a></li>
                 <li class="list-inline-item"><a href="#">Terms</a></li>
                 <li class="list-inline-item"><a href="#">Support</a></li>
             </ul>
-        </footer>
+        </footer> -->
     </div>
 </body>

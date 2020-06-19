@@ -8,6 +8,24 @@
     height: calc( 100vh - 8rem );
 }
 
+table {
+    border-spacing: 1em .5em;
+}
+
+td {
+    text-align: center;
+    vertical-align: middle;
+}
+
 #words{
     color: white;
+}
+
+#login-warn {
+    font-size: 12px;
+    color: crimson;
+    background-color: white;
+    margin-left: 10px;
+    border-radius: 6%;
+    padding: 5px;
 }

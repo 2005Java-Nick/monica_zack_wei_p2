@@ -43,10 +43,10 @@ export class LoginService{
         this.authenticate(data).subscribe(
           (userToken: UserAccount) => {
             console.log(userToken);
-            sessionStorage.setItem('Token', userToken.sessionToken);
-            console.log(sessionStorage.getItem('Token'));
             if (userToken == null) { obser.next(false); }
-            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); this.user = userToken; }
+            if (userToken != null) {this.loginStatusChanged.next(true); obser.next(true); this.user = userToken;
+              sessionStorage.setItem('Token', userToken.sessionToken);
+            }
           }
         );
       }

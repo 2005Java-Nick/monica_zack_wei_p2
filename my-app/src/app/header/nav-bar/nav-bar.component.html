@@ -4,7 +4,7 @@
     <div>
         <a class="navbar-brand" (click)="onHomeClick()">
             <img src="assets\images\grocery_logo.jpg" width="65" height="64" id="img">
-            <b> Online Grocery Store </b>
+            <b id="logo"> Online Grocery Store </b>
         </a>
     </div>
 
@@ -24,38 +24,50 @@
     <button type="button" class="btn" id="cart-btn" (click)="onCartClick()"><i class="fas fa-shopping-cart"></i> Cart
     </button>
 
-    <div *ngIf="!isLogin" class="user-btns">
-        <a class="navbar-brand" (click)="onRegisterClick()">
-            <i class="fas fa-user-plus"></i>
-            Signup
-        </a>
-        <a class="navbar-brand" (click)="onLoginClick()">
-            <i class="fas fa-sign-in-alt"></i>
-            Login
-        </a>
+    <div *ngIf="!isLogin">
+        <span class="user-btns">
+            <a class="navbar-brand" (click)="onRegisterClick()">
+                <i class="fas fa-user-plus"></i>
+                Signup
+            </a>
+        </span>
+        <span class="user-btns">
+            <a class="navbar-brand" (click)="onLoginClick()">
+                <i class="fas fa-sign-in-alt"></i>
+                Login
+            </a>
+        </span>
     </div>
-    <div *ngIf="isLogin" class="user-btns">
-        <div>
+    <div *ngIf="isLogin">
+        <div class="user-btns">
             <a class="navbar-brand" (click)="onInvoiceClick()">
                 <i class="fas fa-file-invoice-dollar"></i>
                 View Invoices
             </a>
         </div>
-        <div *ngIf="loginService.user.accountType.type === 'driver'">
+    </div>
+    <div *ngIf="isLogin">
+        <div *ngIf="loginService.user.accountType.type === 'driver'" class="user-btns">
             <a class="navbar-brand" (click)="onDriverClick()">
                 <i class="fas fa-truck"></i>
                 Driver
-            </a>            
-        </div>
-        <div *ngIf="loginService.user.accountType.type === 'admin'">
-            <a class="navbar-brand" (click)="onAdminClick()">
-                <i class="fas fa-user-shield"></i>
-                ADMIN
             </a>
         </div>
-        <a class="navbar-brand" (click)="loginService.resetLogin(); onHomeClick">
-            <i class="fas fa-sign-out-alt"></i>
-            Logout
-        </a>
+        <span class="user-btns">
+            <div *ngIf="loginService.user.accountType.type === 'admin'">
+                <a class="navbar-brand" (click)="onAdminClick()">
+                    <i class="fas fa-user-shield"></i>
+                    ADMIN
+                </a>
+            </div>
+        </span>
+        <div>
+            <span class="user-btns">
+                <a class="navbar-brand" (click)="loginService.resetLogin(); onHomeClick();">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Logout
+                </a>
+            </span>
+        </div>
     </div>
 </nav>

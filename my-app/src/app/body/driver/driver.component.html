@@ -2,53 +2,60 @@
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <div class="table-container">
-    <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
-        <li class="nav-item">
-            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
-                aria-controls="home" aria-selected="true" (click)="this.driverService.driverShiftToggle()">OnShift</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                aria-controls="profile" aria-selected="false" (click)="this.driverService.driverShiftToggle()">OffShift</a>
-        </li>
-    </ul>
-    <div>
-    <h2>Shipping Assigments</h2>  
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Status</th>
-          <th>ID</th>
-          <th>Customer Name</th>
-          <th>Address</th>
-          <th>Contact No</th>
-          <th>Shipping Date</th>
-          <th>Customer Comments</th>
-          <th>Delivery Comments</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of this.driverService.driverOrders">
-          <td>
-            <div class="col-auto my-2">
-                <label class="mr-sm-8" for="inlineFormCustomSelect">Status</label>
-                <select [(ngModel)]="item.status" class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-                  <option  *ngFor="let status of statuses" [value]="status" selected>{{status}}</option>
-                </select>
-              </div>
-          </td>
-          <td>{{item.id}}</td>
-          <td>{{item.customer.firstname +" "+ item.customer.lastname}}</td>
-          <td>{{item.customer.address}}<br>{{item.customer.city +" "+ item.customer.state +" "+item.customer.zip}}</td>
-          <td>{{item.customer.phoneNumber}}</td>
-          <td>{{item.shippingDate}}</td>
-          <td>{{item.customerComments}}{{item.deliveryComments}}</td>
-          <td><textarea [(ngModel)]="item.deliveryComments" name="deliveryComments" rows="3" columns="7"></textarea></td>
-          <td><button (click)="this.driverService.updateDriverOrder(item)">update</button></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+    <div>
+        <div class="row" id="heading">
+            <h2>Shipping Assigments</h2>
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" role="tab"
+                        aria-controls="home" aria-selected="true"
+                        (click)="this.driverService.driverShiftToggle()">OnShift</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" role="tab"
+                        aria-controls="profile" aria-selected="false"
+                        (click)="this.driverService.driverShiftToggle()">OffShift</a>
+                </li>
+            </ul>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Status</th>
+                    <th>ID</th>
+                    <th>Customer Name</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Shipping Date</th>
+                    <th>Customer Comments</th>
+                    <th>Delivery Comments</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of this.driverService.driverOrders">
+                    <td class="row-data">
+                        <div>
+                            <select [(ngModel)]="item.status" id="inlineFormCustomSelect">
+                                <option *ngFor="let status of statuses" [value]="status" selected>{{status}}</option>
+                            </select>
+                        </div>
+                    </td>
+                    <td class="row-data">{{item.id}}</td>
+                    <td class="row-data">{{item.customer.firstname +" "+ item.customer.lastname}}</td>
+                    <td class="row-data">
+                        {{item.customer.address}}<br>{{item.customer.city +" "+ item.customer.state +" "+item.customer.zip}}
+                    </td>
+                    <td class="row-data">{{item.customer.phoneNumber}}</td>
+                    <td class="row-data">{{item.shippingDate}}</td>
+                    <td class="row-data">{{item.customerComments}}{{item.deliveryComments}}</td>
+                    <td class="row-data"><textarea [(ngModel)]="item.deliveryComments" name="deliveryComments" rows="3"
+                            columns="7"></textarea></td>
+                    <td class="row-data"><button class="btn" id="update-btn"
+                            (click)="this.driverService.updateDriverOrder(item)"><strong>Update</strong></button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>

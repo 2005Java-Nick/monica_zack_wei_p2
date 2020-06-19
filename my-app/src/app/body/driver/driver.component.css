@@ -10,17 +10,74 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    
 }
 .table-container {
     font-size: 15px;
-    width: 90%;
-    margin: auto;
-    padding: 3rem;
+    width: 95%;
+    margin: 2rem;
+    padding: 2rem;
     background-color: rgb(218, 230, 227);
-    border-radius: 5%;
+    border-radius: 15%;
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+}
+
+.row-data * {
+    font-size: 10px;
+}
+
+#update-btn {
+    background-color: rgb(62, 190, 158);
+    box-shadow: 1px 1px 1px 1px rgb(9, 39, 31);
+}
+
+#update-btn:hover {
+    background-color: rgb(82, 207, 176);
+    transform: scale(1.1);
+    box-shadow: 2px 2px 2px 2px rgb(9, 39, 31);
+}
+
+.nav-tabs .nav-link{
+    padding: 2%;
+    height: 34px;
+    font-weight: 600;
+    color: #fff;
+    border-top-right-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
+}
+
+.nav-tabs .nav-link:hover{
+    border: none;
+}
+
+.nav-tabs .nav-link.active{
+    width: 100px;
+    color: #239115;
+    border: 2px solid #239115;
+    border-top-left-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+}
+
+.nav-tabs{
+    margin-top: 3%;
+    border: none;
+    background: #239115;
+    border-radius: 1.5rem;
+    width: 20%;
+    float: right;
+    align-self: flex-end;
+}
+
+#heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+th {
+    text-align: center;
+    min-width: 10%;
 }

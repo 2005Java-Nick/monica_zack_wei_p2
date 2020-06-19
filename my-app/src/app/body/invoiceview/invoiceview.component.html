@@ -1,8 +1,8 @@
 <div class="table-container">
-    <div>
+  <div>
     <h2>Invoices</h2>
-    <p>Below is the list of purchases:</p>            
-    <table class="table">
+    <p>Below is the list of purchases:</p>
+    <table class="table" id="invoice-table">
       <thead>
         <tr>
           <th>ID</th>
@@ -18,9 +18,8 @@
           <td>{{item.shippingDate}}</td>
           <td>{{item.purchaseDate}}</td>
           <td>{{item.status}}</td>
-          <td>{{item.finalPrice}}</td>
+          <td>{{item.finalPrice | number:'1.2-2'}}</td>
         </tr>
       </tbody>
     </table>
   </div>
-  

@@ -2,18 +2,24 @@
   <div class="col-4 align-self-center ">
     <div id="login-form">
       <form (ngSubmit)="loginUser()">
+
         <div class="form-group">
           <label for="usernameInput" id="words">Username</label>
           <input [(ngModel)]="user.username" type="text" class="form-control" id="usernameInput" name="usernameInput">
-
         </div>
+
         <div class="form-group">
           <label for="passwordInput" id="words">Password</label>
           <input [(ngModel)]="user.password" type="password" class="form-control animate__bounceInUp" id="passwordInput"
             name="passwordInput">
         </div>
 
-        <button type="submit" class="btn btn-primary animate__animated animate__fadeInLeftBig">Login</button>
+        <table>
+          <tr>
+            <td><button type="submit" class="btn btn-primary animate__animated animate__fadeInLeftBig">Login</button></td>
+            <td *ngIf="failedLogin"><div id="login-warn"><strong>Username or password is incorrect.</strong></div></td>
+          </tr>
+        </table>
       </form>
     </div>
   </div>

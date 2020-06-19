@@ -19,11 +19,16 @@ export class LoginComponent implements OnInit {
 
   isLoggedIn: boolean;
 
+  failedLogin = false;
+
   loginUser() {
     console.log('login submit clicked');
     this.loginService.setToken(this.user).pipe(first()).subscribe(data => {
       if (data === true) {
         this.route.navigateByUrl('/home');
+      } else {
+        this.failedLogin = true;
+        console.log(data);
       }
     });
   }
