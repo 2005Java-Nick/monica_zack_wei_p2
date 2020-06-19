@@ -4,6 +4,7 @@ import { Observable, observable, Subject} from 'rxjs';
 import { environment } from './../../../environments/environment';
 import { UserData } from '../types/UserData';
 import { UserAccount } from '../types/UserAccount';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -17,7 +18,7 @@ export class LoginService{
 
   loginStatusChanged: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private route: Router) {
     this.resetLogin();
     this.loginStatusChanged.subscribe((value) => {
       this.isLogin = value;
@@ -29,6 +30,7 @@ export class LoginService{
     this.isLogin = false;
     sessionStorage.clear();
     this.loginStatusChanged.next(false);
+    this.route.navigateByUrl('/home');
   }
 
   authenticate(data: UserData): Observable<UserAccount> {
