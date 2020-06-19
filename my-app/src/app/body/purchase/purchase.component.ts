@@ -66,9 +66,6 @@ export class PurchaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.loginService.isLogin) {
-      this.route.navigateByUrl('/home');
-    }
     this.onChangeTotal();
     this.invoice = new Invoice();
   }
